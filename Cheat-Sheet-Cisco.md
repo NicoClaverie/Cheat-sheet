@@ -142,3 +142,11 @@
 | **logging trap level**   | Utilisé pour limiter les messages qui sont enregistrés sur les serveurs syslog en fonction de leur gravité. Spécifiez le numéro ou le nom du niveau de gravité souhaité pour les messages à enregistrer. |
 | **show logging**         | Affiche l'état de la journalisation du système (syslog) et le contenu du tampon de journalisation standard du système.                                                                                   |
 | **terminal monitor**     | Envoie une copie de tous les messages syslog, y compris les messages de débogage, à l'utilisateur Telnet ou SSH qui exécute cette commande.                                                              |
+
+
+## **Liens externes**  
+
+
+https://www.netwrix.com/cisco_commands_cheat_sheet.html
+
+https://github.com/grplyler/cisco-cheatsheet
