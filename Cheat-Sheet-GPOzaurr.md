@@ -65,6 +65,6 @@ Update-Module -Name GPOZaurr
 ```
 
 ## Documentation
-Pour plus de détails, consultez la page GitHub du projet : [GPOZaurr sur GitHub](https://github.com/EvotecIT/GPOZaurr)
-
+Pour plus de détails, consultez la page GitHub du projet : [GPOZaurr sur GitHub](https://github.com/EvotecIT/GPOZaurr)  
+Lien vers un tutoriel IT-Connect : [GPOZaurr sur IT-Connect](https://www.it-connect.fr/gpozaurr-outil-ultime-pour-audit-analyser-gpo/)
 Ce fichier Markdown résume les principales informations et quelques commandes utiles pour débuter avec GPOZaurr.
