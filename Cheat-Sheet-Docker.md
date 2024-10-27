@@ -11,122 +11,135 @@
 
 ## Installation et Configuration :
 1. Dans une fenêtre terminal, exécuter les commandes suivantes :
-    ```bash
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo apt-add-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-    sudo apt update
-    sudo apt install docker-ce docker-ce-cli containerd.io
-    sudo docker --version
+    ```
+    1 Add Docker's official GPG key :  
+    sudo apt-get update  
+    sudo apt-get install ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+    2 Add the repository to Apt sources:
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
     ```
 
 2. Vérifier que **Docker CLI** est installé :
-    ```bash
+    ```
     docker --version
+    ```
+
+3. Vérifier que Docker est installé et fonctionne avec une image
+    ```
+    sudo docker run hello-world
     ```
 
 ## Commandes Générales :
 - Démarrer Docker :
-    ```bash
+    ```
     sudo systemctl start docker
     ```
 - Vérifier le statut de Docker :
-    ```bash
+    ```
     sudo systemctl status docker
     ```
 
 ## Commande Docker Run :
 - Exécuter un conteneur :
-    ```bash
+    ```
     docker run <image_name>
     ```
 
 ### Exemples pratiques :
 - Lancer un conteneur en mode interactif avec un terminal bash :
-    ```bash
+    ```
     docker run -it <image_name> /bin/bash
     ```
 
 - Lancer un conteneur en arrière-plan (détaché) :
-    ```bash
+    ```
     docker run -d <image_name>
     ```
 
 - Lancer un conteneur et mapper un port local avec celui du conteneur :
-    ```bash
+    ```
     docker run -d -p 5000:80 <image_name>
     ```
 
 - Monter un volume dans le conteneur :
-    ```bash
+    ```
     docker run -v /path/local:/path/container <image_name>
     ```
 
 - Nommer un conteneur lors du lancement :
-    ```bash
+    ```
     docker run --name <container_name> <image_name>
     ```
 
 ## Gestion des Conteneurs :
 - Lister tous les conteneurs :
-    ```bash
+    ```
     docker ps -a
     ```
 
 - Démarrer un conteneur existant :
-    ```bash
+    ```
     docker start <container_id>
     ```
 
 - Arrêter un conteneur :
-    ```bash
+    ```
     docker stop <container_id>
     ```
 
 - Supprimer un conteneur :
-    ```bash
+    ```
     docker rm <container_id>
     ```
 
 ## Gestion des Images Docker :
 - Lister toutes les images Docker locales :
-    ```bash
+    ```
     docker images
     ```
 
 - Télécharger une image Docker (pull) :
-    ```bash
+    ```
     docker pull <image_name>
     ```
 
 - Construire une image Docker à partir d’un Dockerfile :
-    ```bash
+    ```
     docker build -t <image_name> .
     ```
 
 - Supprimer une image Docker :
-    ```bash
+    ```
     docker rmi <image_id>
     ```
 
 ## Gestion des Volumes Docker :
 - Lister tous les volumes :
-    ```bash
+    ```
     docker volume ls
     ```
 
 - Créer un volume :
-    ```bash
+    ```
     docker volume create <volume_name>
     ```
 
 - Supprimer un volume :
-    ```bash
+    ```
     docker volume rm <volume_name>
     ```
 
 ## Nettoyage des Ressources avec Docker Prune :
 - Nettoyer les conteneurs, images et volumes non utilisés :
-    ```bash
+    ```
     docker system prune
     ```
 
@@ -138,29 +151,31 @@ Cette commande supprime :
 
 ### Options supplémentaires :
 - Pour nettoyer les volumes également :
-    ```bash
+    ```
     docker system prune --volumes
     ```
 
 - Forcer la suppression sans confirmation :
-    ```bash
+    ```
     docker system prune -f
     ```
 
 - Nettoyage ciblé (par exemple, les conteneurs) :
-    ```bash
+    ```
     docker container prune
     ```
 
 - Supprimer uniquement les images non utilisées :
-    ```bash
+    ```
     docker image prune
     ```
 
 - Supprimer uniquement les volumes inutilisés :
-    ```bash
+    ```
     docker volume prune
     ```
 ## Lien externe
+
+https://docs.docker.com/engine/install/ubuntu/  
 
 https://blog.stephane-robert.info/docs/conteneurs/moteurs-conteneurs/docker/
