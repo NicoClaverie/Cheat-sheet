@@ -84,6 +84,15 @@ Prenons un exemple : nous souhaitons définir l'adresse IP "192.168.14.50/24" su
 
 ```New-NetIPAddress -InterfaceAlias LAN -IPAddress 192.168.14.50 -PrefixLength 24 -DefaultGateway 192.168.14.2 -AddressFamily IPv4```
 
+
+L'adresse IP sera immédiatement définie sur la carte réseau, et associée à deux magasins, "ActiveStore" et "PersistentStore". L'adresse IP sera donc persistante même après un redémarrage de la machine.
+
+Par la suite, si vous souhaitez changer l'adresse IP sur cette interface, vous devez la supprimer, puis ajouter une nouvelle adresse IP. Ainsi, pour utiliser l'adresse IP "192.168.14.51" au lieu de "192.168.14.50", nous devons utiliser ces cmdlets :
+
+```Remove-NetIPAddress -InterfaceAlias LAN -IPAddress 192.168.14.50```
+```New-NetIPAddress -InterfaceAlias LAN -IPAddress 192.168.14.51```
+
+
 ## Définir un serveur DNS sur l'interface réseau
 
 Pour définir des serveurs DNS nous devons utiliser deux cmdlets supplémentaires :
