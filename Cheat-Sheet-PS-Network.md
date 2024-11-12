@@ -3,18 +3,24 @@
 
 ## Obtenir la liste des interfaces réseau
 
-```Get-NetAdapter```
+```
+Get-NetAdapter
+```
 
 Cette commande est capable de lister les adaptateurs Ethernet (RJ45 et Wi-Fi), mais aussi les adaptateurs Bluetooth. La liste retournée contient un ensemble de propriétés correspondantes à des caractéristiques de chaque interface réseau (nom, statut, adresse MAC, vitesse de connexion, etc.).
 
 Pour obtenir la liste de toutes les interfaces réseau actives, nous pouvons filtrer la liste de cette façon :
 
-```Get-NetAdapter | Where-Object { $_.Status -eq "Up" }```
+```
+Get-NetAdapter | Where-Object { $_.Status -eq "Up" }
+```
 
 
 ## Renommer une interface réseau
 
-```Rename-NetAdapter -Name Ethernet0 -NewName LAN```
+```
+Rename-NetAdapter -Name Ethernet0 -NewName LAN
+```
 
 ## Activer, désactiver ou redémarrer une interface réseau
 
@@ -26,34 +32,48 @@ Avec PowerShell, nous allons pouvoir activer ou désactiver une interface résea
 
 Désactiver l'interface réseau
 
-```Disable-NetAdapter -Name LAN```
+```
+Disable-NetAdapter -Name LAN
+```
 
 Activer l'interface réseau
 
-```Enable-NetAdapter -Name LAN```
+```
+Enable-NetAdapter -Name LAN
+```
 
 Redémarrer l'interface réseau
 
-```Restart-NetAdapter -Name LAN```
+```
+Restart-NetAdapter -Name LAN
+```
 
 `LAN` peux etre remplacé par le nom de l'interface ciblé
 
 Verifier si l'action est passé
 
-```(Get-NetAdapter -Name LAN).Status```
+```
+(Get-NetAdapter -Name LAN).Status
+```
 
 ## Obtenir la configuration IP d'une interface
 
 Le cmdlet "Get-NetIPConfiguration", dont l'alias est "gip", est une alternative à la célèbre commande MS-DOS "ipconfig".
-```Get-NetIPConfiguration```  
-```Get-NetIPConfiguration -All```
+```
+Get-NetIPConfiguration
+Get-NetIPConfiguration -All
+```
 
 
 Si vous trouvez que ce cmdlet ne retourne pas assez d'informations, sachez que vous pouvez ajouter le paramètre "-Detailed".
 
-```Get-NetIPConfiguration -Detailed```  
+```
+Get-NetIPConfiguration -Detailed
+```  
 ou  
-```gip -Detailed```  
+```
+gip -Detailed
+```  
 
 Il permet d'afficher des propriétés supplémentaires relativement intéressantes, dont celles-ci :
 
@@ -65,11 +85,15 @@ Il permet d'afficher des propriétés supplémentaires relativement intéressant
 
 En complément de ce cmdlet, nous pouvons utiliser "Get-NetIPAddress" qui présente l'avantage de lister toutes les adresses IP configurées sur la machine locale, en IPv4 et IPv6, ainsi que pour la boucle locale.
 
-```Get-NetIPAddress```
+```
+Get-NetIPAddress
+```
 
 Nous pouvons même générer un tableau récapitulatif de cette façon :
 
-```Get-NetIPAddress | Sort-Object -Property InterfaceAlias | Format-Table InterfaceAlias, IPAddress, AddressFamily```
+```
+Get-NetIPAddress | Sort-Object -Property InterfaceAlias | Format-Table InterfaceAlias, IPAddress, AddressFamily
+```
 
 ## Définir une adresse IPv4
 
@@ -82,15 +106,19 @@ Ceci implique d'utiliser ce cmdlet avec un ensemble de paramètres :
 
 Prenons un exemple : nous souhaitons définir l'adresse IP "192.168.14.50/24" sur la carte réseau "LAN". La passerelle par défaut sera "192.168.14.2". Voici la commande complète à exécuter :
 
-```New-NetIPAddress -InterfaceAlias LAN -IPAddress 192.168.14.50 -PrefixLength 24 -DefaultGateway 192.168.14.2 -AddressFamily IPv4```
+```
+New-NetIPAddress -InterfaceAlias LAN -IPAddress 192.168.14.50 -PrefixLength 24 -DefaultGateway 192.168.14.2 -AddressFamily IPv4
+```
 
 
 L'adresse IP sera immédiatement définie sur la carte réseau, et associée à deux magasins, "ActiveStore" et "PersistentStore". L'adresse IP sera donc persistante même après un redémarrage de la machine.
 
 Par la suite, si vous souhaitez changer l'adresse IP sur cette interface, vous devez la supprimer, puis ajouter une nouvelle adresse IP. Ainsi, pour utiliser l'adresse IP "192.168.14.51" au lieu de "192.168.14.50", nous devons utiliser ces cmdlets :
 
-```Remove-NetIPAddress -InterfaceAlias LAN -IPAddress 192.168.14.50```
-```New-NetIPAddress -InterfaceAlias LAN -IPAddress 192.168.14.51```
+```
+Remove-NetIPAddress -InterfaceAlias LAN -IPAddress 192.168.14.50
+New-NetIPAddress -InterfaceAlias LAN -IPAddress 192.168.14.51
+```
 
 
 ## Définir un serveur DNS sur l'interface réseau
@@ -101,11 +129,70 @@ Pour définir des serveurs DNS nous devons utiliser deux cmdlets supplémentaire
 - **Set-DnsClientServerAddress** : pour définir une liste de serveurs DNS sur une interface réseau.  
 Pour utiliser le premier cmdlet, il vous suffit de l'appeler sans préciser de paramètres (on peux néanmoins ajouter des paramètres).
 
-```Get-DnsClientServerAddress```
+```
+Get-DnsClientServerAddress
+```
 
-La commande ci-dessous permet de définir les serveurs DNS ayant les adresses IP "192.168.14.10" et "192.168.14.11" sur l'interface nommée "LAN".  
+La commande ci-dessous permet de définir les serveurs DNS ayant les adresses IP "192.168.14.10" et "192.168.14.11" sur l'interface nommée **"LAN"**.  
 
-```Set-DnsClientServerAddress -InterfaceAlias LAN -ServerAddresses ("192.168.14.10","192.168.14.11")```
+```
+Set-DnsClientServerAddress -InterfaceAlias LAN -ServerAddresses ("192.168.14.10","192.168.14.11")
+```
+
+## Définir un suffixe DNS
+
+En complément des adresses IP des serveurs DNS, il est fréquent de définir un suffixe DNS sur l'interface réseau connectée à un réseau d'entreprise, notamment en environnement Active Directory. Pour effectuer cette configuration, nous pouvons utiliser le cmdlet "Set-DnsClient".
+
+L'exemple ci-dessous permet de définir le suffixe DNS "mon-reseau.local" sur l'interface nommée **"LAN"** :
+
+```
+Set-DnsClient -InterfaceAlias LAN -ConnectionSpecificSuffix mon-reseau.local
+```
+
+## Tester la résolution de noms
+
+Le cmdlet PowerShell "Resolve-DnsName" est une alternative à la commande "nslookup" qui va nous permettre d'effectuer de la résolution de noms.  
+
+Voici quelques exemples d'utilisations.
+
+- Résoudre le nom d'hôte **"google.fr"**
+
+```
+Resolve-DnsName google.fr
+```
+
+- Résoudre le nom d'hôte "google.fr" en sollicitant le serveur DNS "8.8.8.8"
+```
+Resolve-DnsName google.fr -Server 8.8.8.8
+```
+
+- Obtenir des informations sur le MX (messagerie) du domaine "google.fr"
+```
+Resolve-DnsName google.fr -Type MX
+```
+
+- Résoudre le nom d'hôte "google.fr" en s'appuyant uniquement sur les données présentes dans le cache DNS local
+```
+Resolve-DnsName it-connect.tech -CacheOnly
+```
+
+- Résoudre plusieurs noms d'hôtes avec une seule commande, en se concentrant sur les enregistrements IPv4 (type A) 
+```
+"google.com", "google.fr" | Resolve-DnsName -Type A
+```
+
+Pour IPv6 faire type AAAA
+```
+"google.com", "google.fr" | Resolve-DnsName -Type AAAA
+```
+
+## Effectuer un test de connectivité
+
+Plutot que la commande **Ping** nous pouvons utiliser la cmdlet **Test-Connection**
+
+```
+Test-Connection 1.1.1.1
+```
 
 
 
