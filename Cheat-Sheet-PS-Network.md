@@ -1,16 +1,16 @@
 # 10 commandes pour configurer le réseau sous Windows avec PowerShell
 
 ## Sommaire 
-[Tableau](#1.-Tableau-récapitulatif)  
-[Obtenir la liste des interfaces réseau](#2.-Obtenir-la-liste-des-interfaces-réseau)  
+[Tableau](#1-tableau-récapitulatif)  
+[Obtenir la liste des interfaces réseau](#2-obtenir-la-liste-des-interfaces-réseau)  
+[Renommer une interface réseau](#3-renommer-une-interface-réseau)
 
 
 
+## 1) Tableau récapitulatif
 
-## 1. Tableau récapitulatif
 
-
-## 2. Obtenir la liste des interfaces réseau
+## 2) Obtenir la liste des interfaces réseau
 
 ```
 Get-NetAdapter
