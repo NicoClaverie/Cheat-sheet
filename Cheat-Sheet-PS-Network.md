@@ -1,7 +1,12 @@
 # 10 commandes pour configurer le réseau sous Windows avec PowerShell
 
+## Sommaire 
+[Tableau](#1-Tableau-récapitulatif)
 
-## Obtenir la liste des interfaces réseau
+## 1 Tableau récapitulatif
+
+
+## 2) Obtenir la liste des interfaces réseau
 
 ```
 Get-NetAdapter
@@ -16,13 +21,13 @@ Get-NetAdapter | Where-Object { $_.Status -eq "Up" }
 ```
 
 
-## Renommer une interface réseau
+## 3) Renommer une interface réseau
 
 ```
 Rename-NetAdapter -Name Ethernet0 -NewName LAN
 ```
 
-## Activer, désactiver ou redémarrer une interface réseau
+## 4) Activer, désactiver ou redémarrer une interface réseau
 
 Avec PowerShell, nous allons pouvoir activer ou désactiver une interface réseau, mais aussi redémarrer une interface réseau. Windows contient les trois cmdlets suivants prévus à cet effet :
 
@@ -56,7 +61,7 @@ Verifier si l'action est passé
 (Get-NetAdapter -Name LAN).Status
 ```
 
-## Obtenir la configuration IP d'une interface
+## 5) Obtenir la configuration IP d'une interface
 
 Le cmdlet "Get-NetIPConfiguration", dont l'alias est "gip", est une alternative à la célèbre commande MS-DOS "ipconfig".
 ```
@@ -95,7 +100,7 @@ Nous pouvons même générer un tableau récapitulatif de cette façon :
 Get-NetIPAddress | Sort-Object -Property InterfaceAlias | Format-Table InterfaceAlias, IPAddress, AddressFamily
 ```
 
-## Définir une adresse IPv4
+## 6) Définir une adresse IPv4
 
 Ceci implique d'utiliser ce cmdlet avec un ensemble de paramètres :
 
@@ -121,7 +126,7 @@ New-NetIPAddress -InterfaceAlias LAN -IPAddress 192.168.14.51
 ```
 
 
-## Définir un serveur DNS sur l'interface réseau
+## 7) Définir un serveur DNS sur l'interface réseau
 
 Pour définir des serveurs DNS nous devons utiliser deux cmdlets supplémentaires :
 
@@ -139,7 +144,7 @@ La commande ci-dessous permet de définir les serveurs DNS ayant les adresses IP
 Set-DnsClientServerAddress -InterfaceAlias LAN -ServerAddresses ("192.168.14.10","192.168.14.11")
 ```
 
-## Définir un suffixe DNS
+## 8) Définir un suffixe DNS
 
 En complément des adresses IP des serveurs DNS, il est fréquent de définir un suffixe DNS sur l'interface réseau connectée à un réseau d'entreprise, notamment en environnement Active Directory. Pour effectuer cette configuration, nous pouvons utiliser le cmdlet "Set-DnsClient".
 
@@ -149,7 +154,7 @@ L'exemple ci-dessous permet de définir le suffixe DNS "mon-reseau.local" sur l'
 Set-DnsClient -InterfaceAlias LAN -ConnectionSpecificSuffix mon-reseau.local
 ```
 
-## Tester la résolution de noms
+## 9) Tester la résolution de noms
 
 Le cmdlet PowerShell "Resolve-DnsName" est une alternative à la commande "nslookup" qui va nous permettre d'effectuer de la résolution de noms.  
 
@@ -186,19 +191,52 @@ Pour IPv6 faire type AAAA
 "google.com", "google.fr" | Resolve-DnsName -Type AAAA
 ```
 
-## Effectuer un test de connectivité
+## 10) Effectuer un test de connectivité
 
 Plutot que la commande **Ping** nous pouvons utiliser la cmdlet **Test-Connection**
 
 ```
 Test-Connection 1.1.1.1
 ```
+Il est possible d'effectuer un ping vers plusieurs machines.
+
+```
+Test-Connection 1.1.1.1,8.8.8.8,google.fr
+```
+Nous pouvons aussi ajouter un compteur.
+```
+Test-Connection 1.1.1.1,8.8.8.8,google.fr -Count 1
+```
+
+## 11) Tester un port
+
+Grâce au cmdlet **"Test-NetConnection"** de PowerShell, nous allons pouvoir effectuer un test sur un port spécifique (uniquement en TCP). Ceci permettra de déterminer si un port est ouvert ou non.  
+
+Pour utiliser le cmdlet "Test-NetConnection", nous devons préciser deux paramètres :  
+
+- **ComputerName** : le nom ou l'adresse IP de la cible.
+- **Port** : le numéro de port à tester
+
+```
+Test-NetConnection -ComputerName google.fr -Port 443
+```
+
+Enfin, sachez que ce cmdlet supporte aussi le nom de certains services, ce qui évite de préciser le numéro de port.   
+Pour effectuer un test sur le port "80", nous pouvons préciser le paramètre **"-CommonTCPPort"** avec la valeur **"HTTP"**
+
+```
+Test-NetConnection -ComputerName 1.1.1.1 -CommonTCPPort HTTP
+```
+Terminons par un bonus : si vous souhaitez afficher la liste de tous les ports sur lesquels écoute un serveur (ou un poste de travail), vous pouvez utiliser le cmdlet **"Get-NetTCPConnection"** de cette façon :
+```
+Get-NetTCPConnection -State Listen
+```
 
 
 
 
 
 
-
+## Sources
 
 https://www.it-connect.fr/chapitres/powershell-10-commandes-pour-configurer-le-reseau-sous-windows/
