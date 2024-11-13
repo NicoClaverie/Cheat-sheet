@@ -4,6 +4,16 @@
 [Tableau](#1-tableau-récapitulatif)  
 [Obtenir la liste des interfaces réseau](#2-obtenir-la-liste-des-interfaces-réseau)  
 [Renommer une interface réseau](#3-renommer-une-interface-réseau)
+[Activer, désactiver ou redémarrer une interface réseau](#4-activer-désactiver-ou-redémarrer-une-interface-réseau)
+[Obtenir la configuration IP d'une interface](#5-obtenir-la-configuration-ip-dune-interface)
+[Définir une adresse IPv4](#6-définir-une-adresse-ipv4)
+[Définir un serveur DNS sur l'interface réseau](#7-définir-un-serveur-dns-sur-linterface-réseau)
+[Définir un suffixe DNS](#8-définir-un-suffixe-dns)
+[Tester la résolution de noms](#9-tester-la-résolution-de-noms)
+[Effectuer un test de connectivité](#10-effectuer-un-test-de-connectivité)
+[Tester un port](#11-tester-un-port)
+[Sources](#sources)
+
 
 
 
