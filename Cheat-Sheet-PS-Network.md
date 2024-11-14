@@ -19,6 +19,49 @@
 
 ## 1) Tableau récapitulatif
 
+| Nom | Commande | Options |
+|:--:|:--:|:--:|
+| Obtenir la liste des interfaces réseau | Get-NetAdapter | \| Where-Object { $_.Status -eq "Up" }" |
+| Renommer une interface réseau | Rename-NetAdapter | -Name Ethernet0 -NewName LAN |
+| Désactiver l'interface réseau | Disable-NetAdapter | -Name LAN |
+| Activer l'interface réseau | Enable-NetAdapter | -Name LAN |
+| Redémarrer l'interface réseau | Restart-NetAdapter | -Name LAN |
+| Obtenir la configuration IP d'une interface | Get-NetIPConfiguration | -All ; -Detailed |
+| Obtenir toutes les adresses IP de la machine (IPv4 et IPv6) | Get-NetIPAddress | \| Sort-Object -Property InterfaceAlias \| Format-Table InterfaceAlias, IPAddress, AddressFamily |
+| Définir une adresse IPv4 |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 2) Obtenir la liste des interfaces réseau
 
