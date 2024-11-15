@@ -28,39 +28,18 @@
 | Redémarrer l'interface réseau | Restart-NetAdapter | -Name LAN |
 | Obtenir la configuration IP d'une interface | Get-NetIPConfiguration | -All ; -Detailed |
 | Obtenir toutes les adresses IP de la machine (IPv4 et IPv6) | Get-NetIPAddress | \| Sort-Object -Property InterfaceAlias \| Format-Table InterfaceAlias, IPAddress, AddressFamily |
-| Définir une adresse IPv4 |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| Définir une adresse IPv4 | New-NetIPAddress | -InterfaceAlias LAN -IPAddress 192.168.14.50 -PrefixLength 24 -DefaultGateway 192.168.14.2 -AddressFamily IPv4 |
+| Supprimer une adresse IPv4 | Remove-NetIPAddress | -InterfaceAlias LAN -IPAddress 192.168.14.50 |
+| Obtenir la liste des serveurs DNS | Get-DnsClientServerAddress |  |
+| Définir un serveur DNS sur l'interface réseau | Set-DnsClientServerAddress | -InterfaceAlias LAN -ServerAddresses ("192.168.14.10","192.168.14.11") |
+| Définir un suffixe DNS | Set-DnsClient | -InterfaceAlias LAN -ConnectionSpecificSuffix mon-reseau.local |
+| Résoudre un nom d'hôte | Resolve-DnsName | google.fr |
+| Résoudre un nom d'hôte en sollicitant un serveur | Resolve-DnsName | google.fr -Server 8.8.8.8 |
+| Effectuer un test de connectivité | Test-Connection | 1.1.1.1 |
+| Effectuer un test de connectivité vers plusieurs machines | Test-Connection | 1.1.1.1,8.8.8.8,google.fr |
+| Tester un port | Test-NetConnection | -ComputerName google.fr -Port 443 |
+| Tester un port avec son nom | Test-NetConnection | -ComputerName 1.1.1.1 -CommonTCPPort HTTP |
+| Obtenir les ports ouvert sur la machine | Get-NetTCPConnection |  |
 
 
 ## 2) Obtenir la liste des interfaces réseau
