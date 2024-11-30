@@ -8,3 +8,4 @@ Cheat sheet commande windows
 |appwiz.cpl|fenetre des programme de windows|
 |compmgmt.msc|Gestion de l'ordinateur|
 |mmc et ctrl+m|racine de console|
+|devmgmt.msc|Gestionnaire de périphérique|
