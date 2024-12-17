@@ -25,6 +25,7 @@ Cheat sheet commande windows
 | perfmon.msc | Lancer l’analyseur de performances. |
 | secpol.msc | Configurer les stratégies de sécurité locales. |
 | gpedit.msc | Gérer les stratégies de groupe locale. |
+| lusrmgr.msc |  Gérer les utilisateurs et groupes locaux |
 
 
 ### Commandes pour les outils du Panneau de configuration :
