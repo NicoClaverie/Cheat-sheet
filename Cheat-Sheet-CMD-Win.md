@@ -4,9 +4,10 @@ Cheat sheet commande windows
 ### Commandes Tiers
 
 
-|Commandes|Action|
-|:-:|:-:|
-|mmc et ctrl+m|racine de console|
+| Commandes | Action |
+| :-: | :-: |
+| Win+R | Exécuter |
+| mmc et ctrl+m | racine de console |
 
 
 ### Commandes système et gestion de l’ordinateur :
