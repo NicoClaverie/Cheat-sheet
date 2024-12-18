@@ -4,7 +4,7 @@ Cheat sheet commande windows
 ### Commandes Tiers
 
 
-| Commandes | Action |
+| **Commandes** | **Action** |
 | :-: | :-: |
 | Win+R | Exécuter |
 | mmc et ctrl+m | racine de console |
@@ -13,7 +13,7 @@ Cheat sheet commande windows
 ### Commandes système et gestion de l’ordinateur :
 
 
-| Commandes | Action |
+| **Commandes** | **Action** |
 | :-: | :-: |
 | services.msc | Ouvrir le gestionnaire de services. |
 | taskschd.msc |  Accéder au planificateur de tâches. |
@@ -31,7 +31,7 @@ Cheat sheet commande windows
 ### Commandes pour les outils du Panneau de configuration :
 
 
-| Commandes | Action |
+| **Commandes** | **Action** |
 | :-: | :-: |
 | appwiz.cpl | Gérer les programmes installés. |
 | control folders | Accéder aux options de dossiers. |
@@ -47,11 +47,11 @@ Cheat sheet commande windows
 ### Commandes réseau et connectivité :
 
 
-| Commandes | Action |
+| **Commandes** | **Action** |
 | :-: | :-: |
 | ipconfig | Afficher et configurer les paramètres IP. |
 | wf.msc | Gérer les paramètres avancés du pare-feu Windows. |
-| .cpl | Accéder aux connexions réseau. |
+| ncpa.cpl | Accéder aux connexions réseau. |
 | netplwiz | Gérer les utilisateurs et leurs accès. |
 | ping [adresse] | Vérifier la connectivité réseau. |
 | tracert [adresse] | Diagnostiquer le chemin réseau. |
@@ -61,7 +61,7 @@ Cheat sheet commande windows
 ### Commandes pratiques pour les diagnostics et la productivité :
 
 
-| Commandes | Action |
+| **Commandes** | **Action** |
 | :-: | :-: |
 | dxdiag | Lancer l’outil de diagnostic DirectX. |
 | eventvwr.msc | Accéder à l’observateur d’événements. |
@@ -78,7 +78,7 @@ Cheat sheet commande windows
 ### Commandes pour les outils intégrés Windows :
 
 
-| Commandes | Action |
+| **Commandes** | **Action** |
 | :-: | :-: |
 | notepad | Ouvrir le Bloc-notes. |
 | msinfo32 | Obtenir des informations système. |
@@ -93,7 +93,7 @@ Cheat sheet commande windows
 ### Autres commandes utiles :
 
 
-| Commandes | Action |
+| **Commandes** | **Action** |
 | :-: | :-: |
 | %temp% | Accéder au dossier des fichiers temporaires. |
 | %userprofile% | Ouvrir le dossier de l’utilisateur actif. |
@@ -101,3 +101,5 @@ Cheat sheet commande windows
 | explorer | Lancer l’explorateur de fichiers. |
 | syskey | Sécuriser la base de données des comptes utilisateurs. |
 | rstrui | Lancer la restauration système. |
+| net stop spooler | Arret spooler impression |
+| net start spooler | Démarage spooler impression |
