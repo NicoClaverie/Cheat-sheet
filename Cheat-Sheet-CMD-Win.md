@@ -52,6 +52,7 @@ Cheat sheet commande windows
 | ipconfig | Afficher et configurer les paramètres IP. |
 | wf.msc | Gérer les paramètres avancés du pare-feu Windows. |
 | ncpa.cpl | Accéder aux connexions réseau. |
+| virtmgmt.msc | Ouvrir le gestionnaire Hyper-V |
 | netplwiz | Gérer les utilisateurs et leurs accès. |
 | ping [adresse] | Vérifier la connectivité réseau. |
 | tracert [adresse] | Diagnostiquer le chemin réseau. |
