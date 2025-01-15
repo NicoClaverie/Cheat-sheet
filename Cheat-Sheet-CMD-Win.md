@@ -47,16 +47,16 @@ Cheat sheet commande windows
 ### Commandes réseau et connectivité :
 
 
-| **Commandes** | **Action** |
-| :-: | :-: |
-| ipconfig | Afficher et configurer les paramètres IP. |
-| wf.msc | Gérer les paramètres avancés du pare-feu Windows. |
-| ncpa.cpl | Accéder aux connexions réseau. |
-| virtmgmt.msc | Ouvrir le gestionnaire Hyper-V |
-| netplwiz | Gérer les utilisateurs et leurs accès. |
-| ping [adresse] | Vérifier la connectivité réseau. |
-| tracert [adresse] | Diagnostiquer le chemin réseau. |
-| netsh wlan show profiles | Lister les profils Wi-Fi enregistrés. |
+|      **Commandes**       |                    **Action**                     |
+| :----------------------: | :-----------------------------------------------: |
+|         ipconfig         |     Afficher et configurer les paramètres IP.     |
+|          wf.msc          | Gérer les paramètres avancés du pare-feu Windows. |
+|         ncpa.cpl         |          Accéder aux connexions réseau.           |
+|       virtmgmt.msc       |          Ouvrir le gestionnaire Hyper-V           |
+|         netplwiz         |      Gérer les utilisateurs et leurs accès.       |
+|      ping [adresse]      |         Vérifier la connectivité réseau.          |
+|    tracert [adresse]     |          Diagnostiquer le chemin réseau.          |
+| netsh wlan show profiles |       Lister les profils Wi-Fi enregistrés.       |
 
 
 ### Commandes pratiques pour les diagnostics et la productivité :
