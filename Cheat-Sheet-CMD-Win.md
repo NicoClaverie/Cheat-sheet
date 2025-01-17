@@ -57,6 +57,7 @@ Cheat sheet commande windows
 |      ping [adresse]      |         Vérifier la connectivité réseau.          |
 |    tracert [adresse]     |          Diagnostiquer le chemin réseau.          |
 | netsh wlan show profiles |       Lister les profils Wi-Fi enregistrés.       |
+| netsh winsock reset all | Reset de la pile TCP-IP |
 
 
 ### Commandes pratiques pour les diagnostics et la productivité :
