@@ -33,7 +33,7 @@
    ```
 2. Renommez `utilman.exe` en `utilman.bak` pour en conserver une copie :
    ```
-   ren utilman.exe utilman.bak
+   copy utilman.exe utilman.bak
    ```
 3. Remplacez `utilman.exe` par `cmd.exe` :
    ```
