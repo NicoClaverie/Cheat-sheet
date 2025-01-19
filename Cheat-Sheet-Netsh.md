@@ -95,7 +95,7 @@
 Réinitialiser une configuration réseau complète :
 ```cmd
 netsh int ip reset
-netsh winsock reset
+netsh winsock reset all
 ipconfig /release
 ipconfig /renew
 ipconfig /flushdns
