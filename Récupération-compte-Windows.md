@@ -1,5 +1,5 @@
 
-# Réinitialiser un mot de passe Windows en remplaçant `utilman.exe`
+# Réinitialiser un mot de passe Windows en remplaçant `utilman.exe` ou `sethc.exe`
 
 ## ⚠️ Avertissements
 - Cette méthode est réservée à des fins légitimes (par exemple, récupérer l'accès à un compte dont vous êtes propriétaire).
@@ -26,20 +26,28 @@
 
 ---
 
-### 3. Remplacer `utilman.exe` par `cmd.exe`
+### 3. Remplacer `utilman.exe` ou `sethc.exe` par `cmd.exe`
 1. Naviguez vers le dossier `System32` :
    ```
    cd C:\Windows\System32
    ```
-2. Renommez `utilman.exe` en `utilman.bak` pour en conserver une copie :
+2. Renommez `utilman.exe` en `utilman.bak` ou `sethc.exe` en `sethc.bak` pour en conserver une copie :
    ```
    copy utilman.exe utilman.bak
    ```
-3. Remplacez `utilman.exe` par `cmd.exe` :
+     
+```
+copy sethc.exe sethc.bak
+```
+
+3. Remplacez `utilman.exe` ou `sethc.exe` par `cmd.exe` :
    ```
    copy cmd.exe utilman.exe
    ```
-
+  
+```
+copy cmd.exe sethc.exe
+```
 ---
 
 ### 4. Redémarrer l’ordinateur
@@ -48,8 +56,11 @@
 ---
 
 ### 5. Utiliser l’invite de commandes pour réinitialiser le mot de passe
-1. Sur l’écran de connexion, cliquez sur l’icône **Accessibilité** (en bas à droite).
-   - Une invite de commande s’ouvrira (au lieu des options d’ergonomie).
+1. Si vous avez choisi de remplacer `utilman.exe`, sur l’écran de connexion, cliquez sur l’icône **Accessibilité** (en bas à droite).  
+  Une invite de commande s’ouvrira (au lieu des options d’ergonomie).  
+  
+2. Si vous avez choisi de remplacer `sethc.exe` appuyez rapidement 5 fois de suite sur la touche majuscule. En temps normal, cela lance l’utilitaire des touches rémanentes mais dans notre cas, cela aura pour effet d’ouvrir une invite de commande.
+
 2. Réinitialisez le mot de passe de l’utilisateur souhaité :
    ```
    net user <NomUtilisateur> <NouveauMotDePasse>
@@ -61,12 +72,16 @@
 
 ---
 
-### 6. Restaurer `utilman.exe`
+### 6. Restaurer `utilman.exe` ou `sethc.exe`
 1. Une fois connecté, ouvrez une invite de commande avec des droits administratifs.
 2. Replacez le fichier original :
    ```
    copy C:\Windows\System32\utilman.bak C:\Windows\System32\utilman.exe
    ```
+     
+```
+copy C:\Windows\System32\sethc.bak C:\Windows\System32\sethc.exe
+```
 
 ---
 

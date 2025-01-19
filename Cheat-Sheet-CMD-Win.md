@@ -4,10 +4,10 @@ Cheat sheet commande windows
 ### Commandes Tiers
 
 
-| **Commandes** |    **Action**     |
-| :-----------: | :---------------: |
-|     Win+R     |     Exécuter      |
-| mmc et ctrl+m | racine de console |
+|   **Commandes**   |    **Action**     |
+| :---------------: | :---------------: |
+|     ``Win+R``     |     Exécuter      |
+| ``mmc et ctrl+m`` | racine de console |
 
 
 ### Commandes système et gestion de l’ordinateur :
@@ -31,17 +31,17 @@ Cheat sheet commande windows
 ### Commandes pour les outils du Panneau de configuration :
 
 
-|  **Commandes**  |               **Action**                |
-| :-------------: | :-------------------------------------: |
-|   appwiz.cpl    |     Gérer les programmes installés.     |
-| control folders |    Accéder aux options de dossiers.     |
-|    desk.cpl     |         Configurer l’affichage.         |
-|    intl.cpl     | Paramètres régionaux et linguistiques.  |
-|  timedate.cpl   |       Régler l’heure et la date.        |
-|    sysdm.cpl    |     Ouvrir les propriétés système.      |
-|  firewall.cpl   |       Gérer le pare-feu Windows.        |
-|  powercfg.cpl   | Modifier les paramètres d’alimentation. |
-|    mmsys.cpl    |   Configurer les périphériques audio.   |
+|    **Commandes**    |               **Action**                |
+| :-----------------: | :-------------------------------------: |
+|   ``appwiz.cpl``    |     Gérer les programmes installés.     |
+| ``control folders`` |    Accéder aux options de dossiers.     |
+|    ``desk.cpl``     |         Configurer l’affichage.         |
+|    ``intl.cpl``     | Paramètres régionaux et linguistiques.  |
+|  ``timedate.cpl``   |       Régler l’heure et la date.        |
+|    ``sysdm.cpl``    |     Ouvrir les propriétés système.      |
+|  ``firewall.cpl``   |       Gérer le pare-feu Windows.        |
+|  ``powercfg.cpl``   | Modifier les paramètres d’alimentation. |
+|    ``mmsys.cpl``    |   Configurer les périphériques audio.   |
 
 
 ### Commandes réseau et connectivité :
@@ -64,45 +64,45 @@ Cheat sheet commande windows
 ### Commandes pratiques pour les diagnostics et la productivité :
 
 
-| **Commandes** |                          **Action**                          |
-| :-----------: | :----------------------------------------------------------: |
-|    dxdiag     |            Lancer l’outil de diagnostic DirectX.             |
-| eventvwr.msc  |            Accéder à l’observateur d’événements.             |
-|      cmd      |                Ouvrir l’invite de commandes.                 |
-|    regedit    | Accéder à l’éditeur de registre (à manipuler avec prudence). |
-|   cleanmgr    |                 Libérer de l’espace disque.                  |
-|    chkdsk     |          Vérifier et réparer les erreurs de disque.          |
-| sfc /scannow  |           Scanner et réparer les fichiers système.           |
-|  shutdown -s  |                       Éteindre le PC.                        |
-|  shutdown -r  |                      Redémarrer le PC.                       |
-|   verifier    |              Diagnostiquer les pilotes système.              |
+|  **Commandes**   |                          **Action**                          |
+| :--------------: | :----------------------------------------------------------: |
+|    ``dxdiag``    |            Lancer l’outil de diagnostic DirectX.             |
+| ``eventvwr.msc`` |            Accéder à l’observateur d’événements.             |
+|     ``cmd``      |                Ouvrir l’invite de commandes.                 |
+|   ``regedit``    | Accéder à l’éditeur de registre (à manipuler avec prudence). |
+|   ``cleanmgr``   |                 Libérer de l’espace disque.                  |
+|    ``chkdsk``    |          Vérifier et réparer les erreurs de disque.          |
+| ``sfc /scannow`` |           Scanner et réparer les fichiers système.           |
+| ``shutdown -s``  |                       Éteindre le PC.                        |
+| ``shutdown -r``  |                      Redémarrer le PC.                       |
+|   ``verifier``   |              Diagnostiquer les pilotes système.              |
 
 
 ### Commandes pour les outils intégrés Windows :
 
 
-| **Commandes** |             **Action**             |
-| :-----------: | :--------------------------------: |
-|    notepad    |       Ouvrir le Bloc-notes.        |
-|   msinfo32    | Obtenir des informations système.  |
-|     mstsc     |   Accéder au bureau à distance.    |
-|     calc      |      Ouvrir la calculatrice.       |
-|    mspaint    |           Lancer Paint.            |
-| snippingtool  | Lancer l’outil de capture d’écran. |
-|    magnify    |          Ouvrir la loupe.          |
-|      osk      |    Afficher le clavier visuel.     |
+|  **Commandes**   |             **Action**             |
+| :--------------: | :--------------------------------: |
+|   ``notepad``    |       Ouvrir le Bloc-notes.        |
+|   ``msinfo32``   | Obtenir des informations système.  |
+|    ``mstsc``     |   Accéder au bureau à distance.    |
+|     ``calc``     |      Ouvrir la calculatrice.       |
+|   ``mspaint``    |           Lancer Paint.            |
+| ``snippingtool`` | Lancer l’outil de capture d’écran. |
+|   ``magnify``    |          Ouvrir la loupe.          |
+|     ``osk``      |    Afficher le clavier visuel.     |
 
 
 ### Autres commandes utiles :
 
 
-|   **Commandes**   |                       **Action**                       |
-| :---------------: | :----------------------------------------------------: |
-|      %temp%       |      Accéder au dossier des fichiers temporaires.      |
-|   %userprofile%   |       Ouvrir le dossier de l’utilisateur actif.        |
-|     %windir%      |              Accéder au dossier Windows.               |
-|     explorer      |           Lancer l’explorateur de fichiers.            |
-|      syskey       | Sécuriser la base de données des comptes utilisateurs. |
-|      rstrui       |            Lancer la restauration système.             |
-| net stop spooler  |                Arret spooler impression                |
-| net start spooler |              Démarage spooler impression               |
+|     **Commandes**     |                       **Action**                       |
+| :-------------------: | :----------------------------------------------------: |
+|      ``%temp%``       |      Accéder au dossier des fichiers temporaires.      |
+|   ``%userprofile%``   |       Ouvrir le dossier de l’utilisateur actif.        |
+|     ``%windir%``      |              Accéder au dossier Windows.               |
+|     ``explorer``      |           Lancer l’explorateur de fichiers.            |
+|      ``syskey``       | Sécuriser la base de données des comptes utilisateurs. |
+|      ``rstrui``       |            Lancer la restauration système.             |
+| ``net stop spooler``  |                Arret spooler impression                |
+| ``net start spooler`` |              Démarage spooler impression               |
