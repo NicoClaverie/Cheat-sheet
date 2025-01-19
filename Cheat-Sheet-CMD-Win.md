@@ -58,6 +58,7 @@ Cheat sheet commande windows
 |    tracert [adresse]     |          Diagnostiquer le chemin réseau.          |
 | netsh wlan show profiles |       Lister les profils Wi-Fi enregistrés.       |
 | netsh winsock reset all | Reset de la pile TCP-IP |
+| net use X: \\Serveur\Partage /persistent:yes | Ajouter un lecteur réseau |
 
 
 ### Commandes pratiques pour les diagnostics et la productivité :
