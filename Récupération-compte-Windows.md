@@ -36,9 +36,9 @@
    copy utilman.exe utilman.bak
    ```
      
-```
-copy sethc.exe sethc.bak
-```
+   ```
+   copy sethc.exe sethc.bak
+   ```
 
 3. Remplacez `utilman.exe` ou `sethc.exe` par `cmd.exe` :
    ```
