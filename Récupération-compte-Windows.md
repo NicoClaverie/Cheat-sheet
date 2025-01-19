@@ -45,9 +45,9 @@ copy sethc.exe sethc.bak
    copy cmd.exe utilman.exe
    ```
   
-```
-copy cmd.exe sethc.exe
-```
+   ```
+   copy cmd.exe sethc.exe
+   ```
 ---
 
 ### 4. Redémarrer l’ordinateur
@@ -79,9 +79,9 @@ copy cmd.exe sethc.exe
    copy C:\Windows\System32\utilman.bak C:\Windows\System32\utilman.exe
    ```
      
-```
-copy C:\Windows\System32\sethc.bak C:\Windows\System32\sethc.exe
-```
+   ```
+   copy C:\Windows\System32\sethc.bak C:\Windows\System32\sethc.exe
+   ```
 
 ---
 
