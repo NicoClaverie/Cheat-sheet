@@ -92,9 +92,9 @@
 ---
 
 ## Exemple de commande pour réinitialiser un mot de passe
-```
-net user Utilisateur Test123
-```
+   ```
+   net user Utilisateur Test123
+   ```
 Cela définit le mot de passe de l'utilisateur `Utilisateur` à `Test123`.
 
 ---
