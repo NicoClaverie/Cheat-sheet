@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Utilisation-Rommon-Cisco.md",
-                "mode": "source",
+                "file": "Guide-des-caracteres-speciaux-(AltCode).md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Utilisation-Rommon-Cisco"
+              "title": "Guide-des-caracteres-speciaux-(AltCode)"
             }
           }
         ]
@@ -164,6 +164,10 @@
   },
   "active": "c3166b324435a443",
   "lastOpenFiles": [
+    "Cheat-Sheet-CMD-Win.md",
+    "Principaux-statuts-HTTP.md",
+    "Guide-des-caracteres-speciaux-(AltCode).md",
+    "Utilisation-Rommon-Cisco.md",
     "Nouveau document texte.txt",
     "Guide des caractères spéciaux (Alt + Code).md",
     "Cheat-Sheet-Cisco.md"
