@@ -26,6 +26,7 @@ Cheat sheet commande windows
 |  ``secpol.msc``  | Configurer les stratégies de sécurité locales. |
 |  ``gpedit.msc``  |     Gérer les stratégies de groupe locale.     |
 | ``lusrmgr.msc``  |    Gérer les utilisateurs et groupes locaux    |
+|`taskmgr.exe`|Gestionnaire des tâches de Windows|
 
 
 ### Commandes pour les outils du Panneau de configuration :
