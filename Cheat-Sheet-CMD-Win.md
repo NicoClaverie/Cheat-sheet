@@ -78,6 +78,7 @@ Cheat sheet commande windows
 | ``shutdown -r``  |                      Redémarrer le PC.                       |
 |   ``verifier``   |              Diagnostiquer les pilotes système.              |
 |`powercfg.exe /hibernate (off-on)`| libere le cache pendant la mise en veille  |
+|`winver`|Permet de connaitre la version de Windows|
 
 
 ### Commandes pour les outils intégrés Windows :
