@@ -1,4 +1,4 @@
-Cheat sheet commande windows
+# Cheat sheet commande windows
 
 
 ### Commandes Tiers
@@ -26,7 +26,7 @@ Cheat sheet commande windows
 |  ``secpol.msc``  | Configurer les stratégies de sécurité locales. |
 |  ``gpedit.msc``  |     Gérer les stratégies de groupe locale.     |
 | ``lusrmgr.msc``  |    Gérer les utilisateurs et groupes locaux    |
-|`taskmgr.exe`|Gestionnaire des tâches de Windows|
+|  `taskmgr.exe`   |       Gestionnaire des tâches de Windows       |
 
 
 ### Commandes pour les outils du Panneau de configuration :
@@ -65,20 +65,20 @@ Cheat sheet commande windows
 ### Commandes pratiques pour les diagnostics et la productivité :
 
 
-|  **Commandes**   |                          **Action**                          |
-| :--------------: | :----------------------------------------------------------: |
-|    ``dxdiag``    |            Lancer l’outil de diagnostic DirectX.             |
-| ``eventvwr.msc`` |            Accéder à l’observateur d’événements.             |
-|     ``cmd``      |                Ouvrir l’invite de commandes.                 |
-|   ``regedit``    | Accéder à l’éditeur de registre (à manipuler avec prudence). |
-|   ``cleanmgr``   |                 Libérer de l’espace disque.                  |
-|    ``chkdsk``    |          Vérifier et réparer les erreurs de disque.          |
-| ``sfc /scannow`` |           Scanner et réparer les fichiers système.           |
-| ``shutdown -s``  |                       Éteindre le PC.                        |
-| ``shutdown -r``  |                      Redémarrer le PC.                       |
-|   ``verifier``   |              Diagnostiquer les pilotes système.              |
-|`powercfg.exe /hibernate (off-on)`| libere le cache pendant la mise en veille  |
-|`winver`|Permet de connaitre la version de Windows|
+|           **Commandes**            |                          **Action**                          |
+| :--------------------------------: | :----------------------------------------------------------: |
+|             ``dxdiag``             |            Lancer l’outil de diagnostic DirectX.             |
+|          ``eventvwr.msc``          |            Accéder à l’observateur d’événements.             |
+|              ``cmd``               |                Ouvrir l’invite de commandes.                 |
+|            ``regedit``             | Accéder à l’éditeur de registre (à manipuler avec prudence). |
+|            ``cleanmgr``            |                 Libérer de l’espace disque.                  |
+|             ``chkdsk``             |          Vérifier et réparer les erreurs de disque.          |
+|          ``sfc /scannow``          |           Scanner et réparer les fichiers système.           |
+|          ``shutdown -s``           |                       Éteindre le PC.                        |
+|          ``shutdown -r``           |                      Redémarrer le PC.                       |
+|            ``verifier``            |              Diagnostiquer les pilotes système.              |
+| `powercfg.exe /hibernate (off-on)` |          libère le cache pendant la mise en veille           |
+|              `winver`              |          Permet de connaître la version de Windows           |
 
 
 ### Commandes pour les outils intégrés Windows :
@@ -107,5 +107,5 @@ Cheat sheet commande windows
 |     ``explorer``      |           Lancer l’explorateur de fichiers.            |
 |      ``syskey``       | Sécuriser la base de données des comptes utilisateurs. |
 |      ``rstrui``       |            Lancer la restauration système.             |
-| ``net stop spooler``  |                Arret spooler impression                |
-| ``net start spooler`` |              Démarage spooler impression               |
+| ``net stop spooler``  |                Arrêt spooler impression                |
+| ``net start spooler`` |              Démarrage spooler impression              |
