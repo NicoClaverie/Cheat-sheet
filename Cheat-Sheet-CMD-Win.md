@@ -34,6 +34,7 @@
 
 |    **Commandes**    |               **Action**                |
 | :-----------------: | :-------------------------------------: |
+|`control.exe`|Ouvrir le panneau de configuration|
 |   ``appwiz.cpl``    |     Gérer les programmes installés.     |
 | ``control folders`` |    Accéder aux options de dossiers.     |
 |    ``desk.cpl``     |         Configurer l’affichage.         |
