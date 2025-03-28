@@ -27,6 +27,8 @@
 |  ``gpedit.msc``  |     Gérer les stratégies de groupe locale.     |
 | ``lusrmgr.msc``  |    Gérer les utilisateurs et groupes locaux    |
 |  `taskmgr.exe`   |       Gestionnaire des tâches de Windows       |
+|`gpupdate /force`|Force l'application des GPO de l'AD|
+|`gpresult /h c:\toto.html`|Génère un fichier HTML qui contient les GPO appliqués|
 
 
 ### Commandes pour les outils du Panneau de configuration :
