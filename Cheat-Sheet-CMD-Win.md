@@ -29,7 +29,7 @@
 |  `taskmgr.exe`   |       Gestionnaire des tâches de Windows       |
 |`gpupdate /force`|Force l'application des GPO de l'AD|
 |`gpresult /h c:\toto.html`|Génère un fichier HTML qui contient les GPO appliqués|
-|`fsmgmt.msc`|Ouvre la fenetre pour visualiser tout les dossiers partagés |
+|`fsmgmt.msc`|Ouvre la fenêtre pour visualiser tout les dossiers partagés |
 
 
 ### Commandes pour les outils du Panneau de configuration :
