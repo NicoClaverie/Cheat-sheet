@@ -8,9 +8,9 @@
 | Commande                                     | Description |
 |---------------------------------------------|-------------|
 | `pnputil /add-driver monpilote.inf`         | Ajoute un pilote au magasin |
-| `pnputil /delete-driver oem42.inf`          | Supprime un pilote du magasin |
+| `pnputil /delete-driver monpilote.inf`      | Supprime un pilote du magasin |
 | `pnputil /enum-drivers`                     | Liste tous les pilotes présents |
-| `pnputil /export-driver oem42.inf dossier`  | Exporte le pilote vers un dossier |
+| `pnputil /export-driver monpilote.inf dossier`  | Exporte le pilote vers un dossier |
 | `pnputil /disable-device <ID>`              | Désactive un périphérique |
 | `pnputil /enable-device <ID>`               | Réactive un périphérique |
 | `pnputil /scan-devices`                     | Scanne les périphériques pour détecter des changements |
