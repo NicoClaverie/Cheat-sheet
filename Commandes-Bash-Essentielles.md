@@ -49,6 +49,8 @@ echo "Le premier argument est : $1"
 echo "Il y a $# arguments."
 ```
 
+---
+
 ## 3. Entrée/Sortie
 
 ### Afficher un message
