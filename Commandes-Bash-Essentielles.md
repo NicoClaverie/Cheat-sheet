@@ -185,11 +185,19 @@ done
 Bash
 
 ```
+#!/bin/bash
+
 COMPTEUR=1
+
+# Boucle 'while' qui continue tant que COMPTEUR est inférieur ou égal à 5
 while [ "$COMPTEUR" -le 5 ]; do
-    echo "Boucle while: <span class="math-inline">COMPTEUR"
-COMPTEUR\=</span>((COMPTEUR + 1)) # Incrémentation
+    echo "Boucle while: $COMPTEUR"
+    # Incrémentation de la variable COMPTEUR
+    # C'est la méthode recommandée pour l'arithmétique en Bash
+    ((COMPTEUR = COMPTEUR + 1))
 done
+
+echo "Fin de la boucle. Valeur finale du COMPTEUR : $COMPTEUR"
 ```
 
 ### `until` (jusqu'à ce que la condition soit vraie)
@@ -197,11 +205,19 @@ done
 Bash
 
 ```
+#!/bin/bash
+
 COMPTEUR=1
+
+# Boucle 'until' qui continue JUSQU'À ce que COMPTEUR soit strictement supérieur à 5
 until [ "$COMPTEUR" -gt 5 ]; do
-    echo "Boucle until: <span class="math-inline">COMPTEUR"
-COMPTEUR\=</span>((COMPTEUR + 1))
+    echo "Boucle until: $COMPTEUR"
+    # Incrémentation de la variable COMPTEUR
+    # C'est la méthode recommandée pour l'arithmétique en Bash
+    ((COMPTEUR = COMPTEUR + 1))
 done
+
+echo "Fin de la boucle. Valeur finale du COMPTEUR : $COMPTEUR"
 ```
 ---
 
@@ -210,13 +226,21 @@ done
 Bash
 
 ```
+#!/bin/bash
+
+# Définition de la fonction
 ma_fonction() {
     echo "Ceci est une fonction."
-    echo "Arguments : $1 et <span class="math-inline">2"
-return 0 \# Code de retour
-\}
-ma\_fonction "valeur1" "valeur2"
-CODE\_RETOUR\=</span>?
+    # Accéder aux arguments passés à la fonction : $1 est le premier, $2 le second, etc.
+    echo "Arguments : $1 et $2"
+    return 0 # Retourne un code de sortie (0 pour succès, différent de 0 pour erreur)
+}
+
+# Appel de la fonction avec deux arguments
+ma_fonction "valeur1" "valeur2"
+
+# Récupérer le code de retour de la dernière commande exécutée (ici, notre fonction)
+CODE_RETOUR=$?
 echo "Le code de retour est : $CODE_RETOUR"
 ```
 ---
