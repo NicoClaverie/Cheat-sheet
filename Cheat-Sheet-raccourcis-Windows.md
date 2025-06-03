@@ -1,4 +1,4 @@
-# 🪟 Raccourcis Clavier Windows - Cheat Sheet
+# Raccourcis Clavier Windows - Cheat Sheet
 
 | Raccourci                        | Action                                                                 |
 |----------------------------------|------------------------------------------------------------------------|
