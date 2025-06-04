@@ -7,7 +7,7 @@ Utilisation : vérification et réparation de l'image système Windows
 
 ## 🔍 Vérifier l'intégrité de l'image
 
-```powershell
+```
 DISM /Online /Cleanup-Image /CheckHealth
 ```
 
@@ -18,7 +18,7 @@ DISM /Online /Cleanup-Image /CheckHealth
 
 ## 🛠️ Scanner l'image pour détecter les corruptions
 
-```powershell
+```
 DISM /Online /Cleanup-Image /ScanHealth
 ```
 
@@ -29,7 +29,7 @@ DISM /Online /Cleanup-Image /ScanHealth
 
 ## 🧹 Réparer l'image automatiquement (avec Windows Update)
 
-```powershell
+```
 DISM /Online /Cleanup-Image /RestoreHealth
 ```
 
@@ -40,7 +40,7 @@ DISM /Online /Cleanup-Image /RestoreHealth
 
 ## 💾 Réparer avec une source locale (ISO monté, fichier WIM/ESD)
 
-```powershell
+```
 DISM /Online /Cleanup-Image /RestoreHealth /Source:D:\sources\install.wim /LimitAccess
 ```
 
@@ -52,14 +52,14 @@ DISM /Online /Cleanup-Image /RestoreHealth /Source:D:\sources\install.wim /Limit
 
 ## 🧩 Identifier l'index correct dans install.wim / install.esd
 
-```powershell
+```
 DISM /Get-WimInfo /WimFile:D:\sources\install.wim
 ```
 
 - Affiche la liste des éditions disponibles (Pro, Home, etc.)
 - Ajoute `/Index:3` par exemple si besoin :
 
-```powershell
+```
 DISM /Online /Cleanup-Image /RestoreHealth /Source:D:\sources\install.wim:3 /LimitAccess
 ```
 
@@ -67,7 +67,7 @@ DISM /Online /Cleanup-Image /RestoreHealth /Source:D:\sources\install.wim:3 /Lim
 
 ## 🔄 Réparer une partition Windows hors-ligne (WinRE)
 
-```powershell
+```
 DISM /Image:D:\ /Cleanup-Image /RestoreHealth /Source:E:\sources\install.wim /LimitAccess
 ```
 
@@ -81,13 +81,13 @@ DISM /Image:D:\ /Cleanup-Image /RestoreHealth /Source:E:\sources\install.wim /Li
 
 ### Voir la version de l'image
 
-```powershell
+```
 DISM /Online /Get-CurrentEdition
 ```
 
 ### Lister toutes les éditions disponibles dans un WIM
 
-```powershell
+```
 DISM /Get-WimInfo /WimFile:E:\sources\install.wim
 ```
 
