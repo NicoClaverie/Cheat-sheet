@@ -174,6 +174,92 @@ Cette commande supprime :
     ```
     docker volume prune
     ```
+
+
+# 📦 Mettre à jour un fichier `docker-compose.yml`
+
+Ce guide explique comment appliquer des modifications dans un fichier `docker-compose.yml` et relancer les services.
+
+---
+
+## ✏️ 1. Modifier le fichier `docker-compose.yml`
+
+Fais les modifications souhaitées :
+- ajout ou suppression de services
+- modification des ports, volumes, variables d’environnement, etc.
+
+---
+
+## 🔁 2. Appliquer les changements
+
+### 🔹 Relancer simplement les containers
+
+```bash
+sudo docker compose up -d
+```
+
+Cela :
+- crée les nouveaux services si besoin
+- recrée les containers modifiés
+- laisse les autres containers inchangés
+
+---
+
+### 🔹 Rebuild des images si tu modifies un `Dockerfile`
+
+```bash
+sudo docker compose up -d --build
+```
+
+---
+
+### 🔹 Forcer la recréation de tous les containers
+
+```bash
+sudo docker compose up -d --force-recreate
+```
+
+---
+
+### 🔹 Stop + relance propre
+
+```bash
+sudo docker compose down
+sudo docker compose up -d
+```
+
+---
+
+## ✅ 3. Vérification
+
+### Voir les containers actifs :
+```bash
+sudo docker ps
+```
+
+### Suivre les logs :
+```bash
+sudo docker compose logs -f
+```
+
+---
+
+## 🧠 Récapitulatif
+
+| Action                              | Commande                                       |
+|-------------------------------------|------------------------------------------------|
+| Relancer en douceur                 | `sudo docker compose up -d`                   |
+| Forcer la reconstruction d'image    | `sudo docker compose up -d --build`           |
+| Recréer tous les containers         | `sudo docker compose up -d --force-recreate`  |
+| Stop + relance propre               | `docker compose down && docker compose up -d` |
+
+---
+
+> 🛠️ Utilise `--build` ou `--force-recreate` uniquement si nécessaire.
+
+
+
+    
 ## Lien externe
 
 https://docs.docker.com/engine/install/ubuntu/  
