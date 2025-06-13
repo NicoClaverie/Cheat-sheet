@@ -98,6 +98,7 @@
 | ``snippingtool`` | Lancer l’outil de capture d’écran. |
 |   ``magnify``    |          Ouvrir la loupe.          |
 |     ``osk``      |    Afficher le clavier visuel.     |
+| `printbrmui.exe` | Utilitaire pour importer les imprimantes d'une machine et les exporter vers une autre machine |
 
 
 ### Autres commandes utiles :
