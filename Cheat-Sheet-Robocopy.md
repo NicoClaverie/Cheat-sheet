@@ -112,6 +112,25 @@ Si tu veux plus d’options, tape :
 robocopy /?
 ```
 
+---
+
+## Exemple pour sauvegarde et restauration d'une clé USB sur un lecteur réseau
+
+### 1. Sauvegarde vers lecteur réseau et affichage du fichier de LOG
+
+```
+robocopy $PSScriptRoot "G:\Mon Drive\BackupCleUSB" /MIR /COPY:DAT /FFT /R:5 /W:2 /LOG:"G:\Mon Drive\BackupCleUSB\log_backup.txt"
+Invoke-item -path "G:\Mon Drive\BackupCleUSB\log_backup.txt"
+```
+
+### 2. Restauration du lecteur réseau vers la clé en D:\ et affichage du LOG
+
+```
+robocopy "G:\Mon Drive\BackupCleUSB" D:\ /E /COPY:DAT /FFT /R:5 /W:2 /LOG:"G:\Mon Drive\BackupCleUSB\log_restore.txt"
+invoke-item -path "G:\Mon Drive\BackupCleUSB\log_restore.txt"
+```
+
+
 
 
 Source : https://www.it-connect.fr/robocopy-copie-sauvegarde-et-synchronisation-de-donnees-sous-windows/
