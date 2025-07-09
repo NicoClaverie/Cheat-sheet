@@ -10,3 +10,24 @@ $securePassword = Get-Content -Path "C:\Chemin\De\Votre\Choix\password.key" | Co
 $credential = New-Object System.Management.Automation.PSCredential("nomdutilisateurfictif", $securePassword)
 $credential.GetNetworkCredential().Password
 ```
+
+
+## Bloc à ajouter pour une élévation de privilege d'un script
+### --- Début du bloc d'auto-élévation ---
+```
+# Vérifie si la session actuelle a les droits d'administrateur
+$currentUser = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+if (-not $currentUser.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    # Si non, on relance le script actuel en demandant l'élévation
+    $arguments = "& '" + $myinvocation.mycommand.definition + "'"
+    Start-Process powershell.exe -Verb RunAs -ArgumentList $arguments
+    # On quitte la session non-administrateur
+    exit
+}
+```
+### --- Fin du bloc d'auto-élévation ---
+```
+# Le reste de votre script, qui s'exécutera maintenant avec les droits admin, commence ici.
+Write-Host "Le script s'exécute avec les privilèges d'administrateur."
+# ... votre code ...
+```
