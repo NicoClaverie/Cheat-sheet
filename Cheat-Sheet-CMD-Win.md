@@ -84,6 +84,7 @@
 |            ``verifier``            |              Diagnostiquer les pilotes système.              |
 | `powercfg.exe /hibernate (off-on)` |          libère le cache pendant la mise en veille           |
 |              `winver`              |          Permet de connaître la version de Windows           |
+|`rundll32.exe dsquery.dll,OpenQueryWindow`|Rechercher utilisateurs, contacts et groupes de l'AD|
 
 
 ### Commandes pour les outils intégrés Windows :
