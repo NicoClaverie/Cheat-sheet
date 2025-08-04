@@ -76,7 +76,7 @@
 |          ``eventvwr.msc``          |            Accéder à l’observateur d’événements.             |
 |              ``cmd``               |                Ouvrir l’invite de commandes.                 |
 |            ``regedit``             | Accéder à l’éditeur de registre (à manipuler avec prudence). |
-|            ``cleanmgr``            |                 Libérer de l’espace disque.                  |
+|            ``cleanmgr``            |                 Ouvrir le netoyeur de l’espace disque.       |
 |             ``chkdsk``             |          Vérifier et réparer les erreurs de disque.          |
 |          ``sfc /scannow``          |           Scanner et réparer les fichiers système.           |
 |          ``shutdown -s``           |                       Éteindre le PC.                        |
