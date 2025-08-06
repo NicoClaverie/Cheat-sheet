@@ -102,6 +102,7 @@
 |   ``magnify``    |          Ouvrir la loupe.          |
 |     ``osk``      |    Afficher le clavier visuel.     |
 | `printbrmui.exe` | Utilitaire pour importer les imprimantes d'une machine et les exporter vers une autre machine |
+|`resmon.exe`|Ouvrir le moniteur de ressource|
 
 
 ### Autres commandes utiles :
