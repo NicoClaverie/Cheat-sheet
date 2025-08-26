@@ -25,9 +25,28 @@ if (-not $currentUser.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
     exit
 }
 ```
+
 ### --- Fin du bloc d'auto-élévation ---
 ```
 # Le reste de votre script, qui s'exécutera maintenant avec les droits admin, commence ici.
 Write-Host "Le script s'exécute avec les privilèges d'administrateur."
 # ... votre code ...
+```
+
+## Bloc pour ajouter une journalisation facile aux scripts
+
+```
+# Preparation de la journalisation
+$LogFile = "C:\Windows\Temp\toto.log"
+
+Function Write-Log {
+    Param ([string]$LogString)
+    $Stamp = (Get-Date).toString("yyyy-MM-dd HH:mm:ss")
+    $LogMessage = "$Stamp $LogString"
+    Add-content $LogFile -value $LogMessage
+    Write-Host $LogString
+}
+
+# Debut du Script
+Write-Log "Phrase aleatoire pour indiquer le debut du script"
 ```
