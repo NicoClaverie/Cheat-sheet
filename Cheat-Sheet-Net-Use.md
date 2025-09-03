@@ -8,7 +8,7 @@
 | `net use X: \\serveur\partage /persistent:yes` | Connecte un lecteur réseau et le rend persistant. |
 | `net use X: /delete` | Déconnecte le lecteur `X:`. |
 | `net use * /delete /y` | Déconnecte toutes les connexions réseau sans confirmation. |
-| `net use \\serveur\partage /user:nom_utilisateur mot_de_passe` | Accède à un partage sans mapper un lecteur. |
+| `net use \\serveur\partage /user:nom_utilisateur "mot_de_passe"` | Accède à un partage sans mapper un lecteur. |
 | `net use LPT1: \\serveur\imprimante /persistent:yes` | Connecte une imprimante réseau à `LPT1:`. |
 | `net use LPT1: /delete` | Supprime la connexion à l’imprimante. |
 | `net use X: /status` | Affiche l’état de la connexion réseau. |
