@@ -93,6 +93,26 @@ DISM /Get-WimInfo /WimFile:E:\sources\install.wim
 
 ---
 
+## Diagnostiquer et réparer 
+
+Vérifiez l'intégrité de l'image. Montez votre fichier install.wim et utilisez DISM pour vérifier son état de santé.
+```
+# Créez un dossier vide pour monter l'image, par exemple C:\Mount
+# Assurez-vous d'utiliser le bon index pour votre version de Windows (souvent 1)
+
+Dism /Mount-Image /ImageFile:"C:\chemin\vers\votre\install.wim" /Index:1 /MountDir:C:\Mount
+
+# Vérifiez la santé de l'image montée
+Dism /Image:C:\Mount /Cleanup-Image /ScanHealth
+
+# Si des problèmes sont trouvés, tentez une réparation
+Dism /Image:C:\Mount /Cleanup-Image /RestoreHealth
+
+# Démontez et sauvegardez les changements
+Dism /Unmount-Image /MountDir:C:\Mount /Commit
+```
+---
+
 ## 🛑 Astuces
 
 - `Online` = système en cours d’exécution
