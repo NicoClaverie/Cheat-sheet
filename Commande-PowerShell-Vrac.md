@@ -87,3 +87,20 @@ copy "%~dp0config.txt" "%APPDATA%\MonApp\"
 ```
 
 **Règle d'or** : Toujours entourer le chemin de guillemets `"%~dp0fichier.exe"` pour que cela fonctionne même si le chemin contient des espaces.
+
+## Déclencher une action 
+
+```
+# 1. Déclenchement de la question et capture de la réponse
+$reponse = Read-Host "Voulez-vous exécuter cette action ? (O/N)"
+$FunctionName = "Nom de la fonction
+
+# 2. Vérification de la réponse
+# On vérifie si la réponse est 'O' (Oui), en ignorant la casse (-clt = case-less equal, ou -match '^[oO] pour une expression régulière)
+if ($reponse -match '^[oO]') {
+    # Exécution de la fonction
+    $FunctionName
+} else {
+    Write-Host "Action annulée ou réponse non reconnue." -ForegroundColor Yellow
+}
+```
