@@ -11,6 +11,7 @@ $credential = New-Object System.Management.Automation.PSCredential("nomdutilisat
 $credential.GetNetworkCredential().Password
 ```
 
+---
 
 ## Bloc à ajouter pour une élévation de privilege d'un script
 ### --- Début du bloc d'auto-élévation ---
@@ -33,6 +34,8 @@ Write-Host "Le script s'exécute avec les privilèges d'administrateur."
 # ... votre code ...
 ```
 
+---
+
 ## Bloc pour ajouter une journalisation facile aux scripts
 
 ```
@@ -50,6 +53,8 @@ Function Write-Log {
 # Debut du Script
 Write-Log "Phrase aleatoire pour indiquer le debut du script"
 ```
+
+---
 
 ## Astuce : Rendre un script Batch portable
 
@@ -88,6 +93,8 @@ copy "%~dp0config.txt" "%APPDATA%\MonApp\"
 
 **Règle d'or** : Toujours entourer le chemin de guillemets `"%~dp0fichier.exe"` pour que cela fonctionne même si le chemin contient des espaces.
 
+---
+
 ## Déclencher une action 
 
 ```
@@ -103,4 +110,12 @@ if ($reponse -match '^[oO]') {
 } else {
     Write-Host "Action annulée ou réponse non reconnue." -ForegroundColor Yellow
 }
+```
+
+---
+
+## Commande pour créer un wrapper et aider a lancer un script powershell
+
+```
+powershell.exe -NonInteractive -ExecutionPolicy Bypass -File "%~dp0votre_script.ps1"
 ```
