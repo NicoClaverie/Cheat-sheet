@@ -398,3 +398,187 @@ __class_getitem__(cls, item)	Typage générique (Python 3.9+)	MyClass[int]
 | `__index__` | Conversion en entier |
 
 ---
+
+# 🧰 Cheat Sheet Python — Modules Standard (Version Avancée)
+
+## 📂 Module `os` — Interactions avec le système d’exploitation
+
+| Fonction / Attribut | Description |
+|----------------------|--------------|
+| `os.name` | Nom du système (`'posix'`, `'nt'`, etc.) |
+| `os.getcwd()` | Renvoie le répertoire courant |
+| `os.chdir(path)` | Change de répertoire |
+| `os.listdir(path='.')` | Liste les fichiers d’un dossier |
+| `os.mkdir(path)` / `os.makedirs(path, exist_ok=True)` | Crée un dossier |
+| `os.remove(path)` | Supprime un fichier |
+| `os.rmdir(path)` / `os.removedirs(path)` | Supprime un dossier |
+| `os.rename(src, dst)` | Renomme un fichier |
+| `os.stat(path)` | Informations sur un fichier |
+| `os.path` | Sous-module pour manipuler les chemins |
+| `os.environ` | Dictionnaire des variables d’environnement |
+| `os.system(cmd)` | Exécute une commande système |
+| `os.cpu_count()` | Nombre de cœurs du CPU |
+| `os.getlogin()` / `os.getpid()` | Utilisateur / PID actuel |
+
+---
+
+## 🪶 Module `pathlib` — Gestion moderne des chemins
+
+| Méthode / Attribut | Description |
+|---------------------|-------------|
+| `Path.cwd()` | Répertoire courant |
+| `Path.home()` | Dossier utilisateur |
+| `Path('chemin')` | Crée un objet chemin |
+| `p.exists()` / `p.is_file()` / `p.is_dir()` | Vérifie le type |
+| `p.iterdir()` | Liste le contenu |
+| `p.mkdir(parents=True, exist_ok=True)` | Crée un dossier |
+| `p.rename(nouveau_nom)` | Renomme |
+| `p.unlink()` | Supprime un fichier |
+| `p.read_text()` / `p.write_text(data)` | Lecture / écriture texte |
+| `p.read_bytes()` / `p.write_bytes(data)` | Lecture / écriture binaire |
+| `p.joinpath('fichier.txt')` | Concatène des chemins |
+| `p.parts` | Retourne les composants du chemin |
+| `p.suffix` / `p.stem` / `p.name` | Extension, nom sans extension, nom complet |
+
+---
+
+## 🧭 Module `sys` — Accès bas-niveau à l’interpréteur
+
+| Attribut / Fonction | Description |
+|----------------------|-------------|
+| `sys.argv` | Liste des arguments du script |
+| `sys.exit([code])` | Quitte le programme |
+| `sys.path` | Chemins de recherche des modules |
+| `sys.platform` | Plateforme (`'win32'`, `'linux'`, etc.) |
+| `sys.version` | Version complète de Python |
+| `sys.stdout` / `sys.stderr` / `sys.stdin` | Flux standard |
+| `sys.getsizeof(obj)` | Taille mémoire d’un objet |
+| `sys.modules` | Modules actuellement chargés |
+
+---
+
+## 🕓 Module `datetime` — Dates et heures
+
+| Classe / Méthode | Description |
+|-------------------|-------------|
+| `datetime.date.today()` | Date du jour |
+| `datetime.datetime.now()` | Date et heure actuelles |
+| `datetime.datetime.strptime(date_str, format)` | Convertit une chaîne en date |
+| `datetime.datetime.strftime(format)` | Formate une date en texte |
+| `datetime.timedelta(days=1)` | Durée (ajouts / soustractions) |
+| `datetime.datetime.utcnow()` | Heure UTC actuelle |
+| `datetime.datetime.timestamp()` | Convertit en timestamp |
+| `datetime.datetime.fromtimestamp(ts)` | Convertit un timestamp |
+
+---
+
+## 📦 Module `shutil` — Fichiers et répertoires
+
+| Fonction | Description |
+|-----------|--------------|
+| `shutil.copy(src, dst)` | Copie un fichier |
+| `shutil.copytree(src, dst, dirs_exist_ok=True)` | Copie récursive |
+| `shutil.move(src, dst)` | Déplace un fichier/dossier |
+| `shutil.rmtree(path)` | Supprime un dossier récursivement |
+| `shutil.disk_usage(path)` | Espace disque total / utilisé / libre |
+| `shutil.which(program)` | Trouve le chemin d’un exécutable |
+
+---
+
+## 🧨 Module `subprocess` — Exécution de commandes externes
+
+| Fonction | Description |
+|-----------|--------------|
+| `subprocess.run(cmd, capture_output=True, text=True)` | Exécute une commande |
+| `subprocess.Popen([...])` | Lance un processus avancé |
+| `subprocess.call([...])` | Exécute une commande simple |
+| `subprocess.check_output([...])` | Retourne la sortie d’une commande |
+| `subprocess.DEVNULL` | Redirige la sortie vers le néant |
+
+---
+
+## 🧠 Module `platform` — Infos système
+
+| Fonction | Description |
+|-----------|--------------|
+| `platform.system()` | Nom de l’OS |
+| `platform.release()` | Version de l’OS |
+| `platform.version()` | Détails système |
+| `platform.machine()` | Architecture CPU |
+| `platform.node()` | Nom du PC |
+| `platform.python_version()` | Version Python |
+
+---
+
+## 🔍 Module `re` — Expressions régulières
+
+| Fonction | Description |
+|-----------|--------------|
+| `re.match(pattern, string)` | Correspondance au début |
+| `re.search(pattern, string)` | Recherche dans le texte |
+| `re.findall(pattern, string)` | Liste toutes les correspondances |
+| `re.finditer(pattern, string)` | Itérateur de correspondances |
+| `re.sub(pattern, repl, string)` | Remplace les occurrences |
+| `re.split(pattern, string)` | Coupe selon un motif |
+| `re.compile(pattern)` | Précompile une regex |
+| `match.group()` / `match.groups()` | Résultats de correspondance |
+
+---
+
+## 🧾 Module `json` — Sérialisation JSON
+
+| Fonction | Description |
+|-----------|--------------|
+| `json.load(file)` | Lit du JSON depuis un fichier |
+| `json.loads(str)` | Convertit une chaîne JSON → objet Python |
+| `json.dump(obj, file, indent=4)` | Écrit un objet Python → JSON dans un fichier |
+| `json.dumps(obj, indent=4)` | Convertit un objet Python → chaîne JSON |
+
+---
+
+## 💾 Module `pickle` — Sérialisation binaire
+
+| Fonction | Description |
+|-----------|--------------|
+| `pickle.dump(obj, file)` | Sérialise un objet |
+| `pickle.load(file)` | Désérialise un objet |
+| `pickle.dumps(obj)` / `pickle.loads(data)` | Sérialisation en mémoire |
+
+---
+
+## 🌐 Module `socket` — Réseaux
+
+| Fonction | Description |
+|-----------|--------------|
+| `socket.socket()` | Crée un socket |
+| `s.bind((host, port))` | Attache à une adresse |
+| `s.listen([backlog])` | Écoute les connexions |
+| `s.accept()` | Accepte un client |
+| `s.connect((host, port))` | Se connecte à un serveur |
+| `s.send(data)` / `s.recv(bufsize)` | Envoie / reçoit des données |
+| `s.close()` | Ferme le socket |
+
+---
+
+## 🧩 Module `argparse` — Paramètres de ligne de commande
+
+| Élément | Description |
+|----------|--------------|
+| `parser = argparse.ArgumentParser()` | Crée un parseur |
+| `parser.add_argument('--option', help='...')` | Définit un argument |
+| `args = parser.parse_args()` | Lit les arguments |
+| `args.option` | Accès à la valeur |
+
+---
+
+## 🔢 Module `math` — Fonctions mathématiques
+
+| Fonction | Description |
+|-----------|--------------|
+| `math.pi`, `math.e` | Constantes |
+| `math.sqrt(x)` | Racine carrée |
+| `math.pow(x, y)` | Puissance |
+| `math.floor(x)` / `math.ceil(x)` | Arrondi inférieur / supérieur |
+| `math.sin()`, `math.cos()`, `math.tan()` | Fonctions trigonométriques |
+| `math.log(x, base)` | Logarithme |
+| `math.factorial(x)` | Factorielle |
