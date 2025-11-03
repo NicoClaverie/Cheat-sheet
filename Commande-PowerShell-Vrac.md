@@ -65,7 +65,7 @@ Pour éviter les chemins "en dur" (ex: `C:\Dossier\fichier.exe`) et permettre à
 
 - **Comment l'utiliser ?**
   On le place devant le nom du fichier auquel on veut accéder.
----
+
 ### La variable `%~dp0`
 
 La variable `%~dp0` est une variable magique dans les scripts batch. Elle est automatiquement remplacée par le **chemin complet du dossier où se trouve le script**.
