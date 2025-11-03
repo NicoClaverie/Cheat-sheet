@@ -48,6 +48,7 @@
 |  ``firewall.cpl``   |       Gérer le pare-feu Windows.        |
 |  ``powercfg.cpl``   | Modifier les paramètres d’alimentation. |
 |    ``mmsys.cpl``    |   Configurer les périphériques audio.   |
+|`inetcpl.cpl`| Ouvrir propriété de Internet |
 
 
 ### Commandes réseau et connectivité :
