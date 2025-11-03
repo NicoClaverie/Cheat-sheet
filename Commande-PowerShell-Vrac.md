@@ -75,8 +75,6 @@ La variable `%~dp0` est une variable magique dans les scripts batch. Elle est au
 - **`p`** : Représente le chemin d'accès (ex: `\MonDossier\`).
 - **`0`** : Fait référence au fichier script lui-même.
 
----
-
 ### Exemple concret
 
 **Avant (chemin fixe) :**
