@@ -145,3 +145,116 @@ Tunnel VPN ajoute 60 octets overhead
 ✅ **Toujours tester avec `ping -M do` ou `tracepath`**  
 ✅ **MSS Clamping = sécurité anti-bug PMTUD**  
 ✅ **Jumbo Frames = gain local, pas sur Internet**
+
+---
+
+# 🧠 Cheat Sheet — Paramètres Réseau et MTU avancés
+
+---
+
+## 🔸 1. MSS (Maximum Segment Size)
+- Dépend du MTU, peut être forcé côté client, routeur ou pare-feu.
+- Évite fragmentation ou blocage sur VPN/tunnels.
+
+**Linux / Routeur : MSS Clamping**
+```bash
+iptables -t mangle -A FORWARD -p tcp --tcp-flags SYN,RST SYN \
+  -j TCPMSS --clamp-mss-to-pmtu
+```
+
+---
+
+## 🔸 2. TCP MTU Probing (Linux)
+```bash
+# Voir état
+sysctl net.ipv4.tcp_mtu_probing
+
+# Valeurs
+# 0 = désactivé, 1 = actif si PMTUD échoue, 2 = toujours actif
+sudo sysctl -w net.ipv4.tcp_mtu_probing=1
+```
+
+---
+
+## 🔸 3. IPv6 MTU minimum
+- IPv6 impose MTU ≥ 1280 octets.
+```bash
+ip -6 link show dev eth0
+```
+
+---
+
+## 🔸 4. Jumbo Frames
+- Permet gain débit sur LAN.
+```bash
+ip link show dev eth0
+sudo ip link set dev eth0 mtu 9000
+```
+⚠️ Tous les équipements doivent supporter le même MTU.
+
+---
+
+## 🔸 5. Offloading (TSO, LRO, GRO, GSO)
+- Vérifier :
+```bash
+ethtool -k eth0 | grep offload
+```
+- Désactiver si anomalies :
+```bash
+sudo ethtool -K eth0 tso off gso off gro off
+```
+
+---
+
+## 🔸 6. ICMP / ICMPv6 Filtering
+- Essentiel pour PMTUD
+```bash
+iptables -A INPUT -p icmp -j ACCEPT
+ip6tables -A INPUT -p icmpv6 -j ACCEPT
+```
+
+---
+
+## 🔸 7. MTU dans tunnels / interfaces virtuelles
+- VPN, Docker, bridges KVM : vérifier MTU
+```bash
+ip link set wg0 mtu 1420  # exemple WireGuard
+```
+
+---
+
+## 🔸 8. Path MTU Discovery et conteneurs / VM
+- Assurer que ICMP traverse bridges et interfaces virtuelles.
+- Sinon appliquer MSS clamp sur passerelle virtuelle.
+
+---
+
+## 🔸 9. sysctl réseau liés à fragmentation et PMTUD
+```bash
+sysctl net.ipv4.ip_no_pmtu_disc=0
+sysctl net.ipv4.ipfrag_low_thresh
+sysctl net.ipv4.ipfrag_high_thresh
+sysctl net.ipv4.route.min_pmtu
+```
+
+---
+
+## 🔸 10. Surveillance et diagnostic
+- `tracepath <host>` → MTU du chemin
+- `tcpdump -i eth0 icmp` → messages "fragmentation needed"
+- `wireshark` → filtre `icmp or icmpv6`
+- `ip route get <host>` → MTU connue sur la route
+- `ss -i` → MSS négociée pour session TCP
+
+---
+
+## ✅ Récapitulatif des commandes clés
+| Catégorie | Commande | Objectif |
+|-----------|----------|----------|
+| MTU | `ip link show dev eth0` | Taille max par interface |
+| MSS | `iptables --clamp-mss-to-pmtu` | Ajuster MSS automatiquement |
+| PMTUD | `sysctl net.ipv4.tcp_mtu_probing=1` | Découverte dynamique MTU |
+| ICMP | `iptables -A INPUT -p icmp -j ACCEPT` | Laisser passer découverte MTU |
+| Offloading | `ethtool -k eth0` | Vérifier TSO/GSO/GRO |
+| VPN MTU | `ip link set wg0 mtu 1420` | Adapter au protocole |
+| Diagnostic | `tracepath`, `ping -M do`, `tcpdump icmp` | Tester et observer MTU |
