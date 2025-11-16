@@ -1,7 +1,0 @@
-## Hello World
-
-# Salut
-
-```
-Hello
-```

@@ -13,24 +13,24 @@
 ### Commandes système et gestion de l’ordinateur :
 
 
-|  **Commandes**   |                   **Action**                   |
-| :--------------: | :--------------------------------------------: |
-| ``services.msc`` |      Ouvrir le gestionnaire de services.       |
-| ``taskschd.msc`` |      Accéder au planificateur de tâches.       |
-| ``diskmgmt.msc`` |        Gérer les partitions et disques.        |
-| ``devmgmt.msc``  |    Ouvrir le gestionnaire de périphériques.    |
-| ``compmgmt.msc`` | Accéder aux outils de gestion de l’ordinateur. |
-| ``wmimgmt.msc``  |            Console de gestion WMI.             |
-|   ``msconfig``   |    Configurer le démarrage et les services.    |
-| ``perfmon.msc``  |      Lancer l’analyseur de performances.       |
-|  ``secpol.msc``  | Configurer les stratégies de sécurité locales. |
-|  ``gpedit.msc``  |     Gérer les stratégies de groupe locale.     |
-| ``lusrmgr.msc``  |    Gérer les utilisateurs et groupes locaux    |
-|  `taskmgr.exe`   |       Gestionnaire des tâches de Windows       |
-|`gpupdate /force`|Force l'application des GPO de l'AD|
-|`gpresult /h c:\toto.html`|Génère un fichier HTML qui contient les GPO appliqués|
-|`fsmgmt.msc`|Ouvre la fenêtre pour visualiser tout les dossiers partagés |
-|`optionalfeatures`|Ouvrir les fonctionnalités de Windows|
+|       **Commandes**        |                         **Action**                          |
+| :------------------------: | :---------------------------------------------------------: |
+|      ``services.msc``      |             Ouvrir le gestionnaire de services.             |
+|      ``taskschd.msc``      |             Accéder au planificateur de tâches.             |
+|      ``diskmgmt.msc``      |              Gérer les partitions et disques.               |
+|      ``devmgmt.msc``       |          Ouvrir le gestionnaire de périphériques.           |
+|      ``compmgmt.msc``      |       Accéder aux outils de gestion de l’ordinateur.        |
+|      ``wmimgmt.msc``       |                   Console de gestion WMI.                   |
+|        ``msconfig``        |          Configurer le démarrage et les services.           |
+|      ``perfmon.msc``       |             Lancer l’analyseur de performances.             |
+|       ``secpol.msc``       |       Configurer les stratégies de sécurité locales.        |
+|       ``gpedit.msc``       |           Gérer les stratégies de groupe locale.            |
+|      ``lusrmgr.msc``       |          Gérer les utilisateurs et groupes locaux           |
+|       `taskmgr.exe`        |             Gestionnaire des tâches de Windows              |
+|     `gpupdate /force`      |             Force l'application des GPO de l'AD             |
+| `gpresult /h c:\toto.html` |    Génère un fichier HTML qui contient les GPO appliqués    |
+|        `fsmgmt.msc`        | Ouvre la fenêtre pour visualiser tout les dossiers partagés |
+|     `optionalfeatures`     |            Ouvrir les fonctionnalités de Windows            |
 
 
 ### Commandes pour les outils du Panneau de configuration :
