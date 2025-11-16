@@ -1,4 +1,4 @@
-# RSAT --- Explication complète (Version complète)
+# RSAT
 
 ## 1) Qu'est-ce que RSAT ?
 
@@ -158,7 +158,4 @@ Get-ADDomain
     serveur.
 -   Très utile pour automatiser via PowerShell.
 
-------------------------------------------------------------------------
 
-Si tu veux une version PDF, DOCX ou même une version encore plus
-détaillée, je peux aussi te les générer.
