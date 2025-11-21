@@ -117,3 +117,12 @@ if ($reponse -match '^[oO]') {
 ```
 powershell.exe -NonInteractive -ExecutionPolicy Bypass -File "%~dp0votre_script.ps1"
 ```
+
+## Savoir a qui appartient un SID
+
+```
+$SID = "S-1-5-21-1125411162-415437191-1846952604-512"
+$objSID = New-Object System.Security.Principal.SecurityIdentifier($SID)
+$objUser = $objSID.Translate([System.Security.Principal.NTAccount])
+Write-Host "Le propriétaire est : $($objUser.Value)"
+```
