@@ -117,6 +117,10 @@ if ($reponse -match '^[oO]') {
 ```
 powershell.exe -NonInteractive -ExecutionPolicy Bypass -File "%~dp0votre_script.ps1"
 ```
+```
+@echo off
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0votre_script.ps1"
+```
 
 ## Savoir a qui appartient un SID
 
