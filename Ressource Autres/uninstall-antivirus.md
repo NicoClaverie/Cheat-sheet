@@ -14,6 +14,10 @@ Note: In normal mode - you only need the passphrase. In safe mode - you do not n
     SentinelOneInstaller.exe -c -k "PASSPHRASE" -t sitetoken
     ```
 
+    ```
+    SentinelOne\Cleaner\"Sentinel Cleaner Tool"\Cleanstaller_21_7_SP2\Cleanstaller_21.7SP2_MSI\SentinelCleanstaller_MSI64.exe -c -k "PassPhrase" -t Token
+    ```
+
     Example:
 
     ```
