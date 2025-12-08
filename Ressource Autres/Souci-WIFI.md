@@ -60,3 +60,9 @@ Ce document récapitule les points essentiels pour paramétrer une **carte rése
 * Passer sur WPA2 si nécessaire
 * Vérifier firmware borne
 * Observer RSSI/SNR pour confirmer stabilité
+
+
+## Analyse du wifi
+
+Acrylic Wi-Fi Analyser  
+https://www.acrylicwifi.com/wifi-analyzer/
