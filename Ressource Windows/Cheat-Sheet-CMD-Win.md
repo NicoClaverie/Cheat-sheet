@@ -121,3 +121,12 @@
 |      ``rstrui``       |            Lancer la restauration système.             |
 | ``net stop spooler``  |                Arrêt spooler impression                |
 | ``net start spooler`` |              Démarrage spooler impression              |
+
+
+### Commandes PowerShell pour l'obtention d'information :
+
+|     **Commandes**     |                       **Action**                       |
+| :-------------------: | :----------------------------------------------------: |
+|      `Get-WmiObject win32_bios \| select Serialnumber` ou `Get-ComputerInfo -Property "Biosseralnumber"`     |      Permet d'obtenir le numéro de série de la carte mère      |
+
+
