@@ -122,6 +122,7 @@ powershell.exe -NonInteractive -ExecutionPolicy Bypass -File "%~dp0votre_script.
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0votre_script.ps1"
 ```
 
+---
 ## Savoir a qui appartient un SID
 
 ```
@@ -129,4 +130,24 @@ $SID = "S-1-5-21-1125411162-415437191-1846952604-512"
 $objSID = New-Object System.Security.Principal.SecurityIdentifier($SID)
 $objUser = $objSID.Translate([System.Security.Principal.NTAccount])
 Write-Host "Le propriétaire est : $($objUser.Value)"
+```
+
+---
+## Lister les logiciels installés sur un PC
+
+Cette commande permet de :
+- Lister les logiciels installés
+- Vérifier les versions
+- Faciliter un audit ou un dépannage
+- Gagner du temps en support utilisateur
+
+```
+Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* |
+Select DisplayName, DisplayVersion, Publisher |
+Sort DisplayName 
+```
+
+Pour exporter la liste dans un fichier :
+```
+... | Export-Csv "C:\Temp\Software_List.csv" -NoTypeInformation
 ```
