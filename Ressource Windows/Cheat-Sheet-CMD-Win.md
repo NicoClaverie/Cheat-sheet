@@ -32,7 +32,7 @@
 |        `fsmgmt.msc`        | Ouvre la fenêtre pour visualiser tout les dossiers partagés |
 |     `optionalfeatures`     |            Ouvrir les fonctionnalités de Windows            |
 |`wscui.cpl`|Ouvrir Sécurité et maintenance|
-|`cttune.exe`|Ouvrir l'optimiseur du texte ClearType ( Peux éviter le flou de l'écran|
+|`cttune.exe`|Ouvrir l'optimiseur du texte ClearType ( Peux éviter le flou de l'écran)|
 
 ### Commandes pour les outils du Panneau de configuration :
 
