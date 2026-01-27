@@ -44,6 +44,15 @@ Les outils sont généralement classés en 6 familles :
 
 
 
+## Sommaires
+
+1. [Utilitaires de fichiers et de disques](#Utilitaires-de-fichiers-et-de-disques)
+2. [Utilitaires de mise en réseau](#Utilitaires-de-mise-en-réseau)
+3. [Utilitaires de processus](#Utilitaires-de-processus)
+4. [Utilitaires de sécurité](#Utilitaires-de-sécurité)
+5. [Utilitaires d’informations système](#Utilitaires-d’informations-système)
+6. [Utilitaires divers](#Utilitaires-divers)
+
 ## Utilitaires de fichiers et de disques
 
 ### AccessChk
@@ -649,51 +658,279 @@ winget install Microsoft.Sysinternals.PsTools
 
 ---
 
-###
+### ShareEnum
+**Résumé** : Un utilitaire graphique indispensable pour auditer la sécurité des partages réseau dans votre domaine ou groupe de travail. ShareEnum analyse tous les ordinateurs accessibles sur le réseau et dresse une liste complète des partages de fichiers et d'imprimantes, tout en affichant leurs permissions de sécurité (ACL). C'est l'outil idéal pour identifier rapidement les partages dont les accès sont trop permissifs (ex: "Tout le monde" en accès complet).
+
+**Exemple** : Vous êtes administrateur réseau et vous voulez vérifier si des utilisateurs ont créé des partages "sauvages" sur leurs postes de travail avec des droits d'accès non sécurisés. Vous lancez ShareEnum pour scanner votre domaine et obtenir un tableau récapitulatif des droits de lecture/écriture pour chaque dossier partagé détecté.
+
+- Documentation : [ShareEnum sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/shareenum)
+
+- Téléchargement : [ShareEnum.zip](https://download.sysinternals.com/files/ShareEnum.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\ShareEnum.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.ShareEnum
+```
 
 ---
 
-###
+### TCPView
+**Résumé** : Un utilitaire graphique qui affiche en temps réel toutes les connexions réseau (TCP et UDP) actives sur votre système. Il fournit une vue beaucoup plus lisible et interactive que la commande `netstat`, en affichant le nom du processus (logiciel ou service) à l'origine de chaque connexion, les adresses locales/distantes et l'état de la connexion. Les changements sont mis en évidence par des couleurs : vert pour une nouvelle connexion, jaune pour un changement d'état et rouge pour une fermeture.
+
+**Exemple** : Vous remarquez que votre connexion internet est saturée et vous voulez identifier instantanément quel logiciel télécharge des données en arrière-plan. TCPView vous permet de voir le débit de chaque processus et de fermer immédiatement une connexion suspecte ou de tuer le processus associé.
+
+- Documentation : [TCPView sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/tcpview)
+
+- Téléchargement : [TCPView.zip](https://download.sysinternals.com/files/TCPView.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\Tcpview.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.TCPView
+```
 
 ---
 
-###
+### Whois
+**Résumé** : Un utilitaire en ligne de commande qui interroge les bases de données d'enregistrement pour obtenir des informations sur un nom de domaine ou une adresse IP. Il permet de connaître le propriétaire d'un domaine, le bureau d'enregistrement (registrar), les dates de création/expiration et les serveurs de noms (DNS) associés.
+
+**Exemple** : Vous souhaitez vérifier la date d'expiration ou les informations de contact pour le domaine `microsoft.com` :
+```
+whois microsoft.com
+```
+*(Vous pouvez également l'utiliser avec une adresse IP pour identifier l'organisation à laquelle elle appartient : `whois 66.193.254.46`)*
+
+- Documentation : [Whois sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/whois)
+
+- Téléchargement : [Whois.zip](https://download.sysinternals.com/files/Whois.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\whois.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.Whois
+```
 
 ---
 
-###
+## Utilitaires de processus
+
+### Autoruns
+**Résumé** : Probablement l'outil le plus complet pour gérer le démarrage de Windows. Autoruns affiche absolument tout ce qui est configuré pour se lancer automatiquement au démarrage du système ou à l'ouverture de session : logiciels, services, pilotes, tâches planifiées, extensions de l'explorateur, codecs, et bien plus encore. Il permet de désactiver ou de supprimer des entrées suspectes ou inutiles pour optimiser le PC ou débusquer des logiciels malveillants.
+
+**Exemple** : Votre ordinateur est lent au démarrage ou affiche des messages d'erreur mystérieux après la connexion. En utilisant Autoruns, vous pouvez cocher l'option "Masquer les entrées Microsoft" pour isoler immédiatement les logiciels tiers et identifier celui qui ralentit tout.
+
+- Documentation : [Autoruns sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/autoruns)
+
+- Téléchargement : [Autoruns.zip](https://download.sysinternals.com/files/Autoruns.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\autoruns.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.Autoruns
+```
 
 ---
 
-###
+### Handle
+**Résumé** : Un utilitaire en ligne de commande indispensable pour découvrir quel programme a ouvert un fichier ou un répertoire spécifique. Il affiche les "handles" (identificateurs de ressources) ouverts pour n'importe quel processus du système. Outre les fichiers, il peut lister les handles sur les clés de registre, les ports ou les threads, et permet même de forcer la fermeture d'un handle verrouillé.
+
+**Exemple** : Vous essayez de supprimer un dossier mais Windows vous indique qu'il est "utilisé par un autre programme". Pour identifier le coupable :
+```
+handle nom_du_dossier
+```
+*(Pour lister tous les handles ouverts par un processus spécifique comme Firefox : `handle -p firefox`)*
+
+- Documentation : [Handle sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/handle)
+
+- Téléchargement : [Handle.zip](https://download.sysinternals.com/files/Handle.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\handle.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.Handle
+```
 
 ---
 
-###
+### ListDLLs
+**Résumé** : Un utilitaire en ligne de commande qui liste toutes les bibliothèques de liens dynamiques (DLL) actuellement chargées dans les processus en cours d'exécution. Il permet d'identifier quelle version exacte d'une DLL est utilisée, son chemin d'accès complet, et si elle possède une signature numérique. Il est particulièrement utile pour repérer des DLL non signées ou vérifier si une DLL a été relogée (déplacée de son adresse de base).
+
+**Exemple** : Vous voulez voir toutes les DLL chargées par le processus "Explorer" et vérifier leurs informations de version :
+```
+listdlls -v explorer
+```
+*(Pour trouver tous les processus qui utilisent une DLL spécifique, par exemple `mso.dll` : `listdlls -d mso.dll`)*
+
+- Documentation : [ListDLLs sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/listdlls)
+
+- Téléchargement : [ListDLLs.zip](https://download.sysinternals.com/files/ListDLLs.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\listdlls.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.ListDLLs
+```
 
 ---
 
-###
+### Portmon
+**Résumé** : Un utilitaire spécialisé dans la surveillance et l'affichage en temps réel de toute l'activité des ports série (COM) et parallèle (LPT) du système. Il capture les commandes de contrôle (IOCTL) et les données échangées, ce qui en fait un outil essentiel pour dépanner des périphériques matériels (modems, imprimantes spécialisées, automates industriels) ou analyser la communication des logiciels avec ces ports.
+
+**Exemple** : Vous connectez un lecteur de code-barres sur un port COM mais le logiciel de gestion ne reçoit aucune donnée. En lançant Portmon et en sélectionnant le port concerné, vous pouvez voir si des données transitent réellement ou si le port est mal configuré par l'application (vitesse, bits de données, etc.).
+
+- Documentation : [Portmon sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/portmon)
+
+- Téléchargement : [Portmon.zip](https://download.sysinternals.com/files/Portmon.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\portmon.exe
+```
+
+- Installation Winget :  
+*Portmon n'est pas disponible via le manifeste officiel Winget car il est considéré comme un outil "legacy" (pour versions antérieures de Windows).*
 
 ---
 
-###
+### ProcDump
+**Résumé** : Un utilitaire en ligne de commande puissant dont l'objectif principal est de surveiller les processus pour détecter des pics d'utilisation du processeur (CPU) ou des blocages, et de générer automatiquement des fichiers de vidage de mémoire (crash dumps). Ces fichiers sont essentiels pour les développeurs et les administrateurs système afin de diagnostiquer la cause exacte d'un plantage, d'une fuite de mémoire ou d'une application qui ne répond plus.
+
+**Exemple** : Vous avez une application nommée `monapp.exe` qui ralentit le système de manière intermittente. Vous voulez capturer un vidage complet de la mémoire dès qu'elle dépasse 80 % d'utilisation du CPU pendant au moins 5 secondes :
+```
+procdump -ma -c 80 -s 5 monapp.exe
+```
+*(Pour capturer un vidage dès qu'une application plante avec une exception : `procdump -ma -e monapp.exe`)*
+
+- Documentation : [ProcDump sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/procdump)
+
+- Téléchargement : [ProcDump.zip](https://download.sysinternals.com/files/Procdump.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\procdump.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.ProcDump
+```
 
 ---
 
-###
+### Process Explorer
+**Résumé** : Probablement l'outil le plus célèbre de la suite. Process Explorer est un gestionnaire de processus ultra-complet qui affiche une arborescence hiérarchique des processus actifs. Il permet de voir en détail quelles DLL sont chargées par un programme, quels fichiers ou clés de registre il verrouille (handles), et offre des graphiques de performance très précis. Il intègre également une vérification VirusTotal pour scanner tous les processus en cours en un clic.
+
+**Exemple** : Vous ne parvenez pas à supprimer un fichier car il est "ouvert dans un autre programme". Au lieu de deviner, vous utilisez la fonction de recherche (la loupe) de Process Explorer pour trouver instantanément le nom du processus exact qui détient le handle sur ce fichier.
+
+- Documentation : [Process Explorer sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/process-explorer)
+
+- Téléchargement : [ProcessExplorer.zip](https://download.sysinternals.com/files/ProcessExplorer.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\procexp.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.ProcessExplorer
+```
 
 ---
 
-###
+### Process Monitor
+**Résumé** : Le "couteau suisse" ultime pour le dépannage système. Process Monitor fusionne les anciens outils Filemon (activité fichiers) et Regmon (activité registre) pour offrir une surveillance en temps réel de toute l'activité du système de fichiers, du registre, des processus et des threads. Il permet de voir exactement quel fichier est lu, quelle clé de registre est modifiée, et quel processus en est responsable, avec un niveau de détail granulaire (piles d'appels, utilisateurs, etc.).
+
+**Exemple** : Une application affiche un message d'erreur générique "Accès refusé" sans préciser quel fichier pose problème. En lançant ProcMon avec un filtre sur le nom du processus, vous identifiez instantanément la ligne rouge indiquant un résultat `ACCESS DENIED` sur un fichier spécifique ou une clé de registre manquante.
+
+Documentation : [Process Monitor sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/procmon)
+
+Téléchargement : [ProcessMonitor.zip](https://download.sysinternals.com/files/ProcessMonitor.zip)
+
+Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\procmon.exe
+```
+
+Installation Winget :
+```
+winget install Microsoft.Sysinternals.ProcessMonitor
+```
 
 ---
 
-###
+### PsExec
+**Résumé** : Un utilitaire de ligne de commande extrêmement léger et puissant qui permet d'exécuter des processus sur des systèmes distants sans avoir à installer manuellement de logiciel client. Il est souvent utilisé pour lancer des invites de commande interactives ou des outils de diagnostic (comme `ipconfig`) sur d'autres ordinateurs du réseau. Il permet également d'exécuter des programmes localement avec les privilèges du compte **Système** (NT AUTHORITY\SYSTEM), ce qui est très utile pour accéder à certaines clés de registre protégées.
+
+**Exemple** : Vous devez dépanner un serveur distant nommé `Serveur02` et vous voulez ouvrir une invite de commande directement sur celui-ci depuis votre poste :
+```
+psexec \\Serveur02 cmd
+```
+*(Pour lancer l'éditeur de registre localement avec les droits système maximum : `psexec -i -s regedit.exe`)*
+
+- Documentation : PsExec sur Microsoft Learn
+
+- Téléchargement : PSTools.zip
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\psexec.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### PsGetSid
+**Résumé** : Un utilitaire de ligne de commande qui permet de traduire les identifiants de sécurité (SID) en noms de compte lisibles (utilisateurs ou groupes) et vice-versa. Il est capable d'interroger des comptes locaux, des comptes de domaine ou même des comptes intégrés (comme "Système"). Il peut également afficher le SID d'un ordinateur distant, ce qui est utile pour vérifier si des machines clonées ont bien des SID uniques.
+
+**Exemple** : Vous avez un SID (ex: `S-1-5-21-...`) trouvé dans un journal d'audit et vous voulez savoir à quel utilisateur il correspond :
+```
+psgetsid S-1-5-21-xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx-xxxx
+```
+(Pour obtenir le SID de l'utilisateur "Administrateur" sur un serveur distant nommé "SRV-DATA" : psgetsid \\SRV-DATA Administrateur)
+
+- Documentation : [PsGetSid sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/psgetsid)
+
+- Téléchargement : [PSTools.zip](https://download.sysinternals.com/files/PSTools.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\psgetsid.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
