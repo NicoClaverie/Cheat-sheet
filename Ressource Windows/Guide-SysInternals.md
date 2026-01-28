@@ -934,27 +934,169 @@ winget install Microsoft.Sysinternals.PsTools
 
 ---
 
-###
+### PsKill
+**Résumé** : Un utilitaire en ligne de commande conçu pour arrêter (tuer) des processus récalcitrants ou inutiles. Sa force principale réside dans sa capacité à arrêter des processus non seulement sur la machine locale, mais aussi sur des ordinateurs distants sans nécessiter l'installation préalable d'un agent. Il peut cibler un processus par son nom ou par son identifiant unique (PID) et permet également de supprimer toute une arborescence de processus liés.
+
+**Exemple** : Vous voulez arrêter de force toutes les instances de l'application "Outlook" qui ne répond plus sur votre poste :
+```
+pskill outlook
+```
+*(Pour arrêter un processus avec le PID 1234 et tous ses processus enfants sur un serveur distant nommé "SRV-APPS" : `pskill -t \\SRV-APPS 1234`)*
+
+- Documentation : [PsKill sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/pskill)
+
+- Téléchargement : [PSTools.zip](https://download.sysinternals.com/files/PSTools.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\pskill.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### PsList
+**Résumé** : Un utilitaire en ligne de commande qui permet d'afficher des informations détaillées sur les processus en cours d'exécution, de manière similaire au Gestionnaire des tâches, mais avec la flexibilité de la console. Il peut lister les processus locaux ou distants, afficher l'arborescence des processus (liens parent-enfant), et fournir des statistiques précises sur l'utilisation de la mémoire et des threads.
+
+**Exemple** : Vous voulez surveiller en temps réel l'utilisation des ressources d'un serveur distant nommé `SRV-WEB` avec un rafraîchissement toutes les 2 secondes :
+```
+pslist -s 2 \\SRV-WEB
+```
+*(Pour afficher l'arborescence complète des processus sur votre machine locale : `pslist -t`)*
+
+- Documentation : [PsList sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/pslist)
+
+- Téléchargement : [PSTools.zip](https://download.sysinternals.com/files/PSTools.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\pslist.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### PsService
+**Résumé** : Un utilitaire en ligne de commande complet pour visualiser et contrôler les services Windows. Proche de la commande native `sc`, il permet d'afficher l'état, la configuration et les dépendances des services, tout en offrant la possibilité de les démarrer, arrêter, mettre en pause ou redémarrer. Sa particularité est de pouvoir s'exécuter sur des systèmes distants avec des identifiants différents et de posséder une fonction de recherche unique pour localiser les instances d'un service spécifique sur tout votre réseau.
+
+**Exemple** : Vous souhaitez redémarrer le service de spooler d'impression sur un serveur distant nommé `SRV-PRINT` car les impressions sont bloquées :
+```
+psservice \\SRV-PRINT restart spooler
+```
+*(Pour rechercher tous les serveurs exécutant un service spécifique sur votre réseau, par exemple DHCP : `psservice find dhcp`)*
+
+- Documentation : [PsService sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/psservice)
+
+- Téléchargement : [PSTools.zip](https://download.sysinternals.com/files/PSTools.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\psservice.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### PsSuspend
+**Résumé** : Un utilitaire en ligne de commande très pratique qui permet de mettre en pause (suspendre) un processus en cours d'exécution sans l'arrêter définitivement. C'est l'outil idéal lorsqu'un programme consomme trop de ressources (CPU, disque, réseau) et que vous souhaitez libérer ces ressources temporairement pour une autre tâche, tout en gardant la possibilité de reprendre le travail là où il s'était arrêté. Il fonctionne aussi bien sur la machine locale que sur des ordinateurs distants.
+
+**Exemple** : Une compression de fichier très lourde ralentit tout votre système. Au lieu de l'annuler, vous suspendez le processus `7z.exe` pour finir votre visioconférence, puis vous le relancez après :
+```
+pssuspend 7z.exe
+```
+*(Pour reprendre le processus mis en pause : `pssuspend -r 7z.exe`)*
+
+- Documentation : [PsSuspend sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/pssuspend)
+
+- Téléchargement : [PSTools.zip](https://download.sysinternals.com/files/PSTools.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\pssuspend.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### PsTools (Suite)
+**Résumé** : PsTools est une collection incontournable d'utilitaires en ligne de commande permettant d'administrer des systèmes Windows locaux et, surtout, distants. Contrairement aux outils standards, les PsTools ne nécessitent l'installation d'aucun logiciel client sur les machines cibles. Ils couvrent un large éventail de tâches : exécution de processus, gestion des services, arrêt de machines, modification de mots de passe, et collecte d'informations système.
+
+**Liste des outils inclus :**
+
+- **PsExec** : Exécution de processus à distance.
+
+- **PsFile** : Liste les fichiers ouverts à distance.
+
+- **PsGetSid** : Affiche le SID d'un ordinateur ou d'un utilisateur.
+
+- **PsInfo** : Fournit des informations détaillées sur le système.
+
+- **PsKill** : Arrête des processus par nom ou ID.
+
+- **PsList** : Affiche des statistiques détaillées sur les processus.
+
+- **PsLoggedOn** : Indique qui est connecté localement ou via le réseau.
+
+- **PsLogList** : Extrait les enregistrements des journaux d'événements.
+
+- **PsPasswd** : Change les mots de passe des comptes.
+
+- **PsPing** : Mesure les performances et la latence réseau.
+
+- **PsService** : Visualise et contrôle les services.
+
+- **PsShutdown** : Éteint ou redémarre un ordinateur.
+
+- **PsSuspend** : Suspend ou reprend des processus.
+
+- **Exemple** : Vous souhaitez obtenir les informations système (version d'OS, uptime, processeur) d'un ordinateur distant nommé `PC-SALLE-01` :
+```
+psinfo \\PC-SALLE-01
+```
+- Documentation : [PsTools sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/pstools)
+
+- Téléchargement : [PSTools.zip (Suite complète)](https://download.sysinternals.com/files/PSTools.zip)
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### ShellRunas
+**Résumé** : Alors que la commande native `runas` de Windows s'utilise uniquement en ligne de commande, **ShellRunas** apporte cette fonctionnalité directement dans l'interface graphique. Il ajoute une entrée "Exécuter en tant qu'utilisateur différent..." au menu contextuel (clic droit) de l'Explorateur de fichiers. C'est l'outil idéal pour tester rapidement des permissions ou lancer des applications avec des comptes de service sans quitter l'interface visuelle.
+
+**Exemple** : Vous êtes connecté avec votre compte standard et vous devez ouvrir l'Éditeur de registre avec un compte administrateur spécifique. Après avoir installé l'outil, il vous suffit de faire un clic droit sur regedit.exe et de choisir "Exécuter en tant qu'un autre utilisateur" pour saisir les identifiants requis.
+
+- Documentation : [ShellRunas sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/shellrunas)
+
+- Téléchargement : [ShellRunas.zip](https://download.sysinternals.com/files/ShellRunas.zip)
+
+- Installation (pour ajouter au clic droit) :
+```
+shellrunas /reg
+```
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.ShellRunas
+```
 
 ---
 
