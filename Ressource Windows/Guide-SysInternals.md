@@ -1100,71 +1100,380 @@ winget install Microsoft.Sysinternals.ShellRunas
 
 ---
 
-###
+### VMMap
+**Résumé** : Un utilitaire d'analyse approfondie de la mémoire virtuelle et physique pour les processus individuels. VMMap décompose l'utilisation de la mémoire d'un programme en différentes catégories (code exécutable, tas, pile, fichiers mappés, etc.). C'est l'outil de référence pour les développeurs et les experts en système qui cherchent à comprendre comment une application consomme ses ressources ou à identifier précisément l'origine d'une fuite de mémoire.
+
+**Exemple** : Vous développez une application qui semble consommer de plus en plus de RAM au fil du temps. En utilisant VMMap, vous pouvez comparer deux instantanés de la mémoire à différents moments pour voir quel segment (par exemple le "Heap") augmente anormalement, confirmant ainsi une fuite de mémoire.
+
+- Documentation : [VMMap sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/vmmap)
+
+- Téléchargement : [VMMap.zip](https://download.sysinternals.com/files/VMMap.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\vmmap.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.VMMap
+```
 
 ---
 
-###
+## Utilitaires de sécurité
+
+### Autologon
+**Résumé** : Un utilitaire simple et efficace pour configurer l'ouverture de session automatique (Auto Log On) de Windows. Au lieu de modifier manuellement le Registre, ce programme permet de saisir le nom d'utilisateur, le domaine et le mot de passe. Ces informations sont ensuite chiffrées et stockées en tant que secret LSA dans le Registre, permettant au système de se connecter automatiquement au démarrage sans intervention humaine.
+
+**Exemple** : Vous configurez une borne interactive ou un serveur d'affichage public qui doit s'ouvrir directement sur une session utilisateur spécifique après chaque redémarrage (ou coupure de courant). Autologon vous permet de configurer cela en quelques secondes via son interface graphique ou par ligne de commande.
+
+- Documentation : [Autologon sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/autologon)
+
+- Téléchargement : [Autologon.zip](https://download.sysinternals.com/files/Autologon.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\autologon.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.Autologon
+```
 
 ---
 
-###
+### LogonSessions
+**Résumé** : Un utilitaire en ligne de commande qui révèle toutes les sessions de connexion actuellement actives sur un système. Contrairement à ce que l'on pourrait penser, il n'y a pas qu'une seule session (la vôtre) ; Windows en crée de nombreuses pour les services et les comptes système. LogonSessions affiche pour chaque session le nom d'utilisateur, le package d'authentification utilisé (Kerberos, NTLM, etc.), le type de session (Interactive, Service, Réseau) et, en option, les processus rattachés.
+
+**Exemple** : Vous soupçonnez qu'un compte de service ou un utilisateur fantôme exécute des tâches en arrière-plan. Pour voir toutes les sessions et les programmes qui y tournent :
+```
+logonsessions -p
+```
+*(Le paramètre `-p` permet de lister les processus spécifiques à chaque session détectée.)*
+
+- Documentation : [LogonSessions sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/logonsessions)
+
+- Téléchargement : [LogonSessions.zip](https://download.sysinternals.com/files/LogonSessions.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\logonsessions.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.LogonSessions
+```
 
 ---
 
-###
+### NewSID (Attention : Outil obsolète)
+**Résumé** : NewSID était un utilitaire conçu pour changer l'identifiant de sécurité (SID) d'un ordinateur après qu'il a été cloné. L'objectif était d'éviter les conflits de SID identiques sur un réseau. Cependant, Mark Russinovich (créateur de Sysinternals) a fini par démontrer que la duplication du SID de la machine ne posait pas les problèmes de sécurité que l'on craignait. En conséquence, **NewSID a été mis hors service** et n'est plus officiellement disponible en téléchargement.
+
+**Statut actuel** : **Retiré**. Microsoft ne prend plus en charge l'utilisation de NewSID pour préparer des images système.
+
+Alternative recommandée : Microsoft préconise désormais l'utilisation de l'outil natif Sysprep (System Preparation Tool), inclus dans Windows, pour préparer une installation en vue d'un clonage ou d'un déploiement. Sysprep réinitialise proprement le SID et d'autres paramètres spécifiques à la machine.
+
+- Documentation : [NewSID sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/newsid)
+
+- Article explicatif : [NewSID Retirement and the Machine SID Duplication Myth](https://techcommunity.microsoft.com/t5/sysinternals-blog/newsid-retirement-and-the-machine-sid-duplication-myth/ba-p/167512)
 
 ---
 
-###
+### PsLoggedOn
+**Résumé** : Un utilitaire de ligne de commande indispensable pour identifier qui est actuellement connecté à un système, que ce soit localement (session ouverte sur la machine) ou à distance via des partages de ressources réseau (sessions SMB). Contrairement aux commandes Windows natives, il peut interroger un ordinateur distant pour lister ses utilisateurs actifs ou, inversement, rechercher sur tout le réseau pour localiser sur quel poste un utilisateur spécifique est connecté.
+
+**Exemple** : Vous devez redémarrer un serveur de fichiers nommé `SRV-S01` et vous voulez vérifier qu'aucun utilisateur n'a de session ouverte pour éviter des pertes de données :
+```
+psloggedon \\SRV-S01
+```
+*(Pour savoir sur quels ordinateurs du réseau l'utilisateur "jean.dupont" est actuellement connecté : `psloggedon jean.dupont`)*
+
+- Documentation : PsLoggedOn sur Microsoft Learn
+
+- Téléchargement : PSTools.zip
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\psloggedon.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### PsLogList
+**Résumé** : Un utilitaire puissant en ligne de commande qui permet de consulter, filtrer et exporter les journaux d'événements (Event Logs) de Windows, aussi bien sur la machine locale que sur des ordinateurs distants. Il est particulièrement utile pour extraire rapidement des informations spécifiques (erreurs, avertissements, IDs d'événements) sans passer par l'interface lourde de l'Observateur d'événements, et permet d'exporter les résultats dans un format facile à traiter (CSV par exemple).
+
+**Exemple** : Vous voulez lister les 10 derniers avertissements (warnings) du journal Système sur un serveur distant nommé `SRV-WEB` :
+```
+psloglist \\SRV-WEB -n 10 -f w system
+```
+*(Pour surveiller en temps réel les nouveaux événements qui arrivent sur votre machine locale : `psloglist -w system`)*
+
+- Documentation : PsLogList sur Microsoft Learn
+
+- Téléchargement : PSTools.zip
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\psloglist.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### RootkitRevealer (Attention : Outil obsolète)
+**Résumé** : RootkitRevealer était un utilitaire de détection avancé conçu pour débusquer les rootkits persistants. Il fonctionnait en comparant les résultats des API Windows standard (ce que le système "veut bien montrer") avec une analyse brute des structures du système de fichiers et du Registre (ce qui est "réellement" sur le disque). Les différences trouvées pouvaient indiquer la présence d'un malware tentant de se dissimuler.
+
+**Statut actuel** : **Obsolète**. L'outil n'a pas été mis à jour depuis 2006. Il a été conçu pour Windows XP et Windows Server 2003 (versions 32 bits uniquement). Il ne fonctionne pas sur les versions modernes de Windows (Windows 10, 11) en raison des changements majeurs dans l'architecture du noyau et des protections contre les rootkits désormais intégrées.
+
+**Alternative recommandée** :
+
+- **Windows Defender** (intégré à Windows) possède désormais des capacités de détection de rootkits bien supérieures.
+
+- Pour une analyse plus poussée avec Sysinternals, utilisez Process Monitor et Autoruns (en activant l'intégration VirusTotal) pour repérer des comportements suspects ou des entrées de démarrage masquées.
+
+- Documentation : [RootkitRevealer sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/rootkit-revealer)
+
+- Téléchargement (Archives) : [RootkitRevealer.zip](https://download.sysinternals.com/files/RootkitRevealer.zip)
 
 ---
 
-###
+### Sysmon
+**Résumé** : Sysmon est un service système et un pilote de périphérique Windows qui reste actif après les redémarrages pour surveiller et journaliser l'activité du système dans le journal des événements Windows. Il fournit des informations très détaillées sur les créations de processus (avec la ligne de commande complète), les connexions réseau, et les modifications de fichiers. C'est un outil indispensable pour la sécurité et l'investigation numérique (forensics), car il permet de détecter des comportements anormaux ou malveillants souvent invisibles dans les journaux standards.
+
+**Exemple** : Vous voulez surveiller toute création de processus et enregistrer les hachages SHA256 des fichiers exécutables pour les comparer à des bases de données de menaces. Vous installez Sysmon avec une configuration personnalisée :
+```
+sysmon -i c:\config\ma_config.xml -accepteula
+```
+*(Pour simplement installer l'outil avec les paramètres par défaut : `sysmon -i`)*
+
+- Documentation : [Sysmon sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/sysmon)
+
+- Téléchargement : [Sysmon.zip](https://download.sysinternals.com/files/Sysmon.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\sysmon.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.Sysmon
+```
 
 ---
 
-###
+## Utilitaires d’informations système
+
+### ClockRes
+**Résumé** : Un utilitaire très simple en ligne de commande qui affiche la résolution actuelle, minimale et maximale de l'horloge système de Windows. Cette valeur détermine la fréquence à laquelle Windows met à jour l'horloge et interrompt les processus pour le multitâche. C'est un outil utile pour les développeurs qui ont besoin de mesures de temps précises ou pour diagnostiquer des problèmes de performance liés à la latence du minuteur.
+
+**Exemple** : Vous voulez savoir si une application gourmande a modifié la résolution de l'horloge système (souvent pour passer de 15,6 ms à 1 ms ou 0,5 ms pour gagner en réactivité) :
+clockres
+- Documentation : [ClockRes sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/clockres)
+
+- Téléchargement : [ClockRes.zip](https://download.sysinternals.com/files/ClockRes.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\clockres.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.ClockRes
+```
 
 ---
 
-###
+### Coreinfo
+**Résumé** : Coreinfo est un utilitaire de diagnostic qui fournit des informations extrêmement détaillées sur la topologie du processeur et de la mémoire de votre système. Il permet de visualiser le mappage entre les processeurs logiques et physiques, les nœuds NUMA, les sockets, ainsi que la hiérarchie des caches (L1, L2, L3). De plus, il liste l'ensemble des fonctionnalités et extensions supportées par le CPU (comme les instructions SSE, AVX, AES ou les capacités de virtualisation VT-x/AMD-V).
+
+**Exemple** : Vous voulez vérifier si votre processeur supporte la virtualisation matérielle ou les instructions AES pour le chiffrement :
+```
+coreinfo
+```
+*(Pour obtenir une vue détaillée de la hiérarchie du cache et des nœuds NUMA : `coreinfo -c -n`)*
+
+- Documentation : [Coreinfo sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/coreinfo)
+
+- Téléchargement : [Coreinfo.zip](https://download.sysinternals.com/files/Coreinfo.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\coreinfo.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.Coreinfo
+```
 
 ---
 
-###
+### LiveKd
+**Résumé** : Un utilitaire avancé qui permet d'utiliser les débogueurs de noyau de Microsoft (KD ou WinDbg) sur un système Windows en cours d'exécution, sans avoir à redémarrer en mode débogage ou à utiliser une machine tierce. LiveKd crée une vue "virtuelle" de la mémoire du noyau (un snapshot) que le débogueur peut analyser comme s'il s'agissait d'un fichier de vidage d'incident (crash dump), mais sur un système "vivant". C'est un outil précieux pour explorer les structures internes du système d'exploitation ou diagnostiquer des problèmes complexes au niveau du noyau.
+
+**Exemple** : Vous souhaitez examiner les piles de threads du noyau ou les structures de données système sur votre machine actuelle avec l'interface graphique de WinDbg :
+```
+livekd -w
+```
+*(Pour générer un fichier de vidage complet de la mémoire du noyau sur le disque sans lancer le débogueur : `livekd -o C:\temp\kernel.dmp`)*
+
+**Note importante** : Nécessite l'installation préalable des "Debugging Tools for Windows" (inclus dans le Windows SDK).
+
+- Documentation : [LiveKd sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/livekd)
+
+- Téléchargement : [LiveKd.zip](https://download.sysinternals.com/files/LiveKd.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\livekd.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.LiveKd
+```
 
 ---
 
-###
+### LoadOrder
+**Résumé** : Un petit utilitaire graphique qui affiche l'ordre exact dans lequel Windows charge les pilotes de périphérique (drivers) et les services lors du démarrage du système. Il calcule cet ordre en fonction des groupes de chargement et des dépendances définis dans le Registre. C'est un outil précieux pour diagnostiquer des problèmes de démarrage, notamment lorsqu'un pilote semble bloquer le chargement du système ou pour comprendre les priorités de lancement entre différents composants.
+
+**Exemple** : Votre système met beaucoup de temps à démarrer ou échoue à charger un service réseau. En utilisant LoadOrder, vous pouvez vérifier si les pilotes de carte réseau ou les protocoles de bas niveau sont bien chargés avant le service en question.
+
+Documentation : [LoadOrder sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/loadorder)
+
+Téléchargement : [LoadOrder.zip](https://download.sysinternals.com/files/LoadOrder.zip)
+
+Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\loadorder.exe
+```
+
+Installation Winget :
+```
+winget install Microsoft.Sysinternals.LoadOrder
+```
 
 ---
 
-###
+### ProcFeatures (Attention : Outil retiré)
+**Résumé** : ProcFeatures était un petit utilitaire de ligne de commande qui signalait les capacités du processeur en matière de protection contre l'exécution de données (NX/DEP) et de traduction d'adresses physiques (PAE).
+
+**Statut actuel** : **Retiré**. Cet outil a été officiellement mis à la retraite par Microsoft en septembre 2011. Il n'est plus disponible en téléchargement car il est devenu totalement obsolète.
+
+**Alternative recommandée** : Toutes les fonctionnalités de ProcFeatures ont été intégrées et largement dépassées par l'outil Coreinfo (déjà présenté précédemment). Coreinfo fournit désormais des informations bien plus complètes sur les extensions du processeur, incluant le support DEP, PAE, et bien d'autres.
+
+Documentation : [ProcFeatures sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/procfeatures)
+
+Outil de remplacement : [Coreinfo](https://learn.microsoft.com/fr-fr/sysinternals/downloads/coreinfo)
 
 ---
 
-###
+### PsInfo (inclus dans la suite PsTools)
+**Résumé** : Un outil en ligne de commande qui rassemble et affiche des informations essentielles sur le système Windows local ou distant. Il fournit en un coup d'œil des détails tels que la version du noyau, le type de produit, le temps d'activité (uptime), la quantité de RAM, le processeur, ainsi que la date d'installation. Il est particulièrement apprécié des administrateurs pour inventorier rapidement les correctifs (hotfixes) ou les logiciels installés sur les machines du réseau.
+
+**Exemple** : Vous voulez auditer un serveur distant nommé `SRV-CORP` pour lister ses logiciels installés et ses correctifs de sécurité :
+```
+psinfo \\SRV-CORP -s -h
+```
+*(Pour obtenir uniquement les informations sur l'espace disque de votre machine locale : `psinfo -d`)*
+
+- Documentation : [PsInfo sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/psinfo)
+
+- Téléchargement : [PSTools.zip](https://download.sysinternals.com/files/PSTools.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\psinfo.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### RAMMap
+**Résumé** : RAMMap est un utilitaire d'analyse de la mémoire physique extrêmement détaillé. Là où le Gestionnaire des tâches reste superficiel, RAMMap montre exactement comment Windows alloue la RAM : quelle quantité est utilisée par le noyau, par les pilotes, ou pour mettre en cache des fichiers spécifiques. Il permet de visualiser les "Working Sets" des processus, les listes de veille (Standby list) et même les adresses physiques de la mémoire. C'est l'outil ultime pour diagnostiquer les problèmes de "pression mémoire" ou comprendre pourquoi votre RAM semble pleine alors qu'aucun gros processus n'est visible.
+
+**Exemple** : Vous constatez que votre système est lent et que la RAM est saturée. En ouvrant RAMMap, vous allez dans l'onglet "File Summary" et découvrez qu'un fichier de base de données de plusieurs Go est entièrement chargé dans le cache système (Metafile), expliquant ainsi l'absence de mémoire libre pour vos applications. *(Astuce : Le menu "Empty" permet de vider manuellement différents types de mémoire, comme la "Standby List", pour libérer instantanément de la RAM sans redémarrer)*.
+
+- Documentation : [RAMMap sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/rammap)
+
+- Téléchargement : [RAMMap.zip](https://download.sysinternals.com/files/RAMMap.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\rammap.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.RAMMap
+```
 
 ---
 
-###
+### WinObj
+**Résumé** : WinObj est un explorateur graphique pour l'espace de noms du **Gestionnaire d'objets** de Windows (Object Manager). Contrairement à l'Explorateur de fichiers qui gère les dossiers et fichiers physiques, WinObj permet de visualiser les objets internes gérés par le noyau NT, tels que les terminaux de communication (Sections), les sémaphores, les mutex, les ports de message, et surtout les noms symboliques des périphériques (comme les liens entre `C:` et les partitions physiques). C'est un outil essentiel pour les développeurs système et les experts en sécurité pour comprendre comment le noyau organise ses ressources.
+
+**Exemple** : Vous voulez comprendre à quel disque physique ou partition correspond réellement votre lecteur `C:`. En ouvrant WinObj et en naviguant dans le dossier `\Global??`, vous trouverez le lien symbolique `C:` qui pointe vers un objet de type périphérique comme `\Device\HarddiskVolume3`.
+
+- Documentation : [WinObj sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/winobj)
+
+- Téléchargement : [WinObj.zip](https://download.sysinternals.com/files/WinObj.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\winobj.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.WinObj
+```
 
 ---
 
-###
+## Utilitaires divers
+
+### BgInfo
+**Résumé** : Un utilitaire pratique qui affiche automatiquement des informations clés sur la configuration d'un ordinateur (nom de la machine, adresse IP, version de l'OS, niveau de Service Pack, processeur, etc.) directement en arrière-plan sur le bureau. C'est l'outil favori des administrateurs système qui gèrent de nombreux serveurs ou machines virtuelles, car il permet d'identifier instantanément le système sur lequel on travaille sans avoir à ouvrir plusieurs fenêtres de diagnostic.
+
+**Fonctionnement** : Contrairement à un gadget qui tourne en tâche de fond, BgInfo génère une nouvelle image bitmap fusionnant votre papier peint et les informations système, puis il quitte. Il ne consomme donc aucune ressource CPU ou RAM une fois l'image appliquée.
+
+**Exemple** : Vous gérez un parc de serveurs via Bureau à distance (RDP). Pour éviter toute erreur de manipulation, vous configurez BgInfo pour qu'il s'affiche en haut à droite de chaque bureau avec le nom du serveur en rouge. Vous ajoutez ensuite la commande suivante dans le dossier de démarrage pour une mise à jour silencieuse à chaque connexion :
+```
+bginfo.exe /timer:0 /nolicprompt
+```
+- Documentation : [BgInfo sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/bginfo)
+
+- Téléchargement : [BgInfo.zip](https://download.sysinternals.com/files/BGInfo.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\bginfo.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.BgInfo
+```
 
 ---
 
