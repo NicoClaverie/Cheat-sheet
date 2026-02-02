@@ -1477,47 +1477,326 @@ winget install Microsoft.Sysinternals.BgInfo
 
 ---
 
-###
+### BlueScreen (Écran de veille)
+**Résumé** : Probablement l'utilitaire le plus célèbre (et le plus malicieux) de Sysinternals. Ce n'est pas un outil de diagnostic, mais un écran de veille qui simule à la perfection le redoutable "Écran bleu de la mort" (BSOD). Sa force réside dans son authenticité : il extrait les informations réelles de votre système (version du noyau, pilotes chargés, adresses mémoire) pour générer un message d'erreur crédible, puis simule un redémarrage avec la barre de progression de Windows.
+
+**Usage** : Essentiellement utilisé pour faire des farces à des collègues ou des amis, ou pour tester les nerfs d'un administrateur système.
+
+**Fonctionnalités** :
+
+- Simule différents types d'erreurs BSOD.
+
+- Simule les écrans de chargement de Windows.
+
+- Alterne entre erreur et redémarrage toutes les 15 secondes.
+
+- Option "activité disque fictive" pour plus de réalisme.
+
+- Documentation : [BlueScreen sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/bluescreen)
+
+- Téléchargement : [BlueScreen.zip](https://download.sysinternals.com/files/BlueScreen.zip)
+
+- Installation : Copier le fichier `Sysinternals Bluescreen.scr` dans `C:\Windows\System32`, puis le sélectionner dans les paramètres d'écran de veille de Windows.
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.BlueScreen
+```
 
 ---
 
-###
+### CpuStres
+**Résumé** : CpuStres est un utilitaire de test de charge (stress test) conçu pour simuler l'activité du processeur. Il permet de lancer jusqu'à 64 threads simultanément, chacun pouvant être configuré de manière indépendante. Cet outil est idéal pour observer comment un système réagit sous une charge CPU intensive, pour tester la stabilité d'un processeur ou pour vérifier le comportement d'autres applications lorsque les ressources processeur sont saturées.
+
+**Paramètres par thread** :
+
+- **Niveau d'activité** : Contrôle la durée de fonctionnement par rapport au repos (Bas, Moyen, Occupé, Maximum). En mode "Maximum", le thread tourne en boucle continue.
+
+- **Priorité** : Permet de définir la priorité du thread (IDLE, Normal, High, etc.) pour voir comment le planificateur de Windows gère la distribution des ressources.
+
+**Exemple** : Vous voulez vérifier si le système de refroidissement de votre serveur est efficace sous une charge maximale. Vous ouvrez CpuStres, activez plusieurs threads et réglez leur activité sur "Maximum" tout en surveillant la température avec un autre outil.
+
+- Documentation : [CpuStres sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/cpustres)
+
+- Téléchargement : [CpuStres.zip](https://download.sysinternals.com/files/CpuStres.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\cpustres.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.CpuStres
+```
 
 ---
 
-###
+### Ctrl2Cap
+**Résumé** : Ctrl2Cap est un pilote de périphérique (driver) très léger qui permet de transformer la touche **Verr Maj** (Caps Lock) en touche **Ctrl**. Cet outil est particulièrement apprécié des anciens utilisateurs d'UNIX ou des développeurs qui préfèrent avoir la touche Ctrl à portée de doigt, à l'emplacement traditionnel du clavier des stations de travail. Contrairement à d'autres méthodes logicielles, Ctrl2Cap opère au niveau du pilote de clavier, ce qui garantit que le remappage est actif partout dans Windows.
+
+**Usage** : Il s'utilise uniquement en ligne de commande pour l'installation et la désinstallation. Un redémarrage est nécessaire pour que les modifications prennent effet.
+
+**Exemple** : Vous êtes fatigué d'appuyer sur la petite touche Ctrl en bas à gauche pour vos raccourcis. Vous installez le driver pour utiliser la grosse touche Verr Maj à la place :
+```
+ctrl2cap /install
+```
+*(Pour revenir à la configuration d'origine : `ctrl2cap /uninstall`)*
+
+- Documentation : [Ctrl2Cap sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/ctrl2cap)
+
+- Téléchargement : [Ctrl2cap.zip](https://download.sysinternals.com/files/Ctrl2cap.zip)
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.Ctrl2Cap
+```
 
 ---
 
-###
+### DebugView
+**Résumé** : DebugView est un utilitaire qui permet de surveiller et de capturer en temps réel la sortie de débogage (messages envoyés via `OutputDebugString` pour Win32 ou `DbgPrint` pour le noyau) sur votre système local ou sur n'importe quel ordinateur du réseau via TCP/IP. Il est extrêmement utile car il permet de voir les messages de log internes des applications et des pilotes de périphériques sans avoir besoin d'installer un débogueur complet (comme WinDbg ou Visual Studio).
+
+**Fonctionnalités clés** :
+
+- **Double capture** : Affiche à la fois les messages provenant d'applications utilisateur (Win32) et du noyau (drivers).
+
+- **Monitoring à distance** : Permet de voir la console de débogage d'un serveur distant.
+
+- **Filtrage puissant** : Système d'inclusion/exclusion et mise en surbrillance par couleurs pour isoler les messages d'un processus spécifique.
+
+- **Fichiers journaux** : Possibilité d'enregistrer la sortie dans des fichiers avec rotation automatique.
+
+**Exemple** : Vous développez un script ou un petit utilitaire qui ne possède pas d'interface console. En insérant des fonctions de sortie de débogage dans votre code, vous pouvez ouvrir DebugView pour voir ce qui se passe "sous le capot" pendant l'exécution. *(Pour capturer les messages du noyau, n'oubliez pas de lancer DebugView en tant qu'administrateur et de cocher "Capture Kernel" dans le menu Capture)*.
+
+Documentation : [DebugView sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/debugview)
+
+Téléchargement : [DebugView.zip](https://download.sysinternals.com/files/DebugView.zip)
+
+Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\dbgview.exe
+```
+
+Installation Winget :
+```
+winget install Microsoft.Sysinternals.DebugView
+```
 
 ---
 
-###
+### Desktops
+**Résumé** : Cet utilitaire permet de créer jusqu'à quatre bureaux virtuels pour organiser votre espace de travail. Contrairement à beaucoup d'autres outils similaires qui se contentent de masquer ou d'afficher des fenêtres, **Desktops** utilise de véritables objets de bureau Windows natifs. Cela le rend extrêmement léger et stable, car la gestion est confiée directement au noyau Windows. Vous pouvez ainsi séparer vos activités (travail, navigation web, messagerie, etc.) sans encombrement.
+
+**Particularités et limites** :
+
+- **Stabilité** : En utilisant les objets de bureau natifs, il évite les bugs d'affichage fréquents sur d'autres outils.
+
+- **Isolation** : Comme les fenêtres sont liées à un bureau à leur création, vous ne pouvez pas déplacer une fenêtre d'un bureau à un autre.
+
+- **Persistance** : Il n'est pas possible de fermer un bureau une fois créé sans fermer la session utilisateur.
+
+- **Barre des tâches** : Un processus `explorer.exe` distinct tourne sur chaque bureau, mais les icônes de la zone de notification (systray) n'apparaissent généralement que sur le premier bureau.
+
+**Exemple** : Vous travaillez sur un projet complexe avec de nombreuses fenêtres ouvertes. Pour ne pas être déconcentré par vos e-mails ou Slack, vous configurez un raccourci clavier (ex: `Alt+2`) pour basculer instantanément sur un bureau vierge dédié à vos communications.
+
+- Documentation : [Desktops sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/desktops)
+
+- Téléchargement : [Desktops.zip](https://download.sysinternals.com/files/Desktops.zip)
+
+- Utilisation en ligne : 
+```
+\\live.sysinternals.com\tools\desktops.exe
+```
+
+Installation Winget :
+```
+winget install Microsoft.Sysinternals.Desktops
+```
 
 ---
 
-###
+### Hex2dec
+**Résumé** : Un petit utilitaire ultra-léger en ligne de commande qui permet de convertir instantanément des nombres entre le format hexadécimal et le format décimal. C'est l'outil parfait pour les développeurs ou les administrateurs qui manipulent souvent des adresses mémoire ou des codes d'erreur et qui souhaitent éviter d'ouvrir la calculatrice Windows à chaque fois.
+
+**Fonctionnement** :
+
+- Si vous entrez un nombre décimal, il affiche l'équivalent hexadécimal.
+
+- Si vous entrez un nombre précédé de `0x` ou `x`, il affiche l'équivalent décimal.
+
+**Exemple** :
+
+- Pour convertir la valeur décimale 1233 en hexadécimal :
+```
+hex2dec 1233
+```
+- Pour convertir la valeur hexadécimale 0x4D2 en décimal :
+```
+hex2dec 0x4D2
+```
+- Documentation : [Hex2dec sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/hex2dec)
+
+- Téléchargement : [Hex2dec.zip](https://download.sysinternals.com/files/Hex2dec.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\hex2dec.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.Hex2dec
+```
 
 ---
 
-###
+### NotMyFault
+**Résumé** : NotMyFault est un outil de diagnostic "provocateur". Il est utilisé pour causer délibérément des plantages (BSOD), des blocages du système ou des fuites de mémoire (pool leaks) dans le noyau Windows. Bien que cela puisse paraître contre-intuitif, c'est un utilitaire indispensable pour les développeurs de pilotes et les administrateurs qui souhaitent tester si leurs systèmes de récupération (comme le redémarrage automatique ou la génération de fichiers d'image mémoire/dump) fonctionnent correctement. Il sert également de base d'apprentissage pour analyser des crashs réels.
+
+**Fonctionnalités** :
+
+- **Crash** : Simule divers types d'erreurs fatales (débordement de tampon, corruption de pile, IRQL trop élevé, etc.).
+
+- **Hang** : Force le système à ne plus répondre (blocage via IRP ou DPC).
+
+- **Leak** : Provoque des fuites de mémoire dans le pool de mémoire du noyau pour observer la saturation des ressources.
+
+**Exemple** : Vous venez de configurer un serveur pour qu'il génère un "vidage complet" sur le réseau en cas de plantage. Pour valider que cette configuration est opérationnelle sans attendre une vraie panne, vous utilisez NotMyFault pour déclencher un écran bleu immédiat :
+```
+notmyfaultc.exe 0x01
+```
+*(L'option `0x01` déclenche un crash de type "High IRQL fault")*.
+
+- Documentation : [NotMyFault sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/notmyfault)
+
+- Téléchargement : [NotMyFault.zip]https://download.sysinternals.com/files/NotMyFault.zip
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\notmyfault.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.NotMyFault
+```
 
 ---
 
-###
+### PsPasswd (inclus dans la suite PsTools)
+**Résumé** : Un utilitaire en ligne de commande qui permet aux administrateurs de changer le mot de passe d'un compte utilisateur (local ou de domaine) sur un ou plusieurs ordinateurs du réseau simultanément. C'est un outil précieux pour appliquer des politiques de sécurité consistant à changer régulièrement les mots de passe des administrateurs locaux sur un grand parc informatique. PsPasswd utilise les API de réinitialisation de mot de passe de Windows, garantissant que les mots de passe ne transitent jamais en clair sur le réseau.
+
+**Exemple** : Vous devez changer le mot de passe du compte local "AdminLocal" sur tous les serveurs listés dans un fichier texte nommé `serveurs.txt` :
+```
+pspasswd @serveurs.txt AdminLocal NouveauMotDePasse123!
+```
+*(Si vous voulez changer le mot de passe sur votre machine locale : `pspasswd NomUtilisateur NouveauMotDePasse`)*
+
+- Documentation : [PsPasswd sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/pspasswd)
+
+- Téléchargement : [PSTools.zip](https://download.sysinternals.com/files/PSTools.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\pspasswd.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### PsShutdown (inclus dans la suite PsTools)
+**Résumé** : Un utilitaire en ligne de commande beaucoup plus puissant que la commande `shutdown` native de Windows. Il permet d'éteindre, de redémarrer, de mettre en veille ou de verrouiller des ordinateurs locaux ou distants. Sa grande force réside dans sa flexibilité : il peut afficher un message personnalisé aux utilisateurs, leur laisser la possibilité d'annuler l'opération, ou au contraire forcer la fermeture immédiate de toutes les applications.
+
+**Fonctionnalités clés** :
+
+- **Verrouillage/Déconnexion** : Peut verrouiller la session (`-l`) ou déconnecter l'utilisateur (`-o`).
+
+- **Planification** : Permet de définir un compte à rebours (`-t nn`) ou une heure précise pour l'arrêt.
+
+- **Annulation** : Possibilité d'annuler un arrêt imminent déjà lancé (`-a`).
+
+- **Gestion à distance** : Capacité d'agir sur une liste d'ordinateurs via un fichier texte.
+
+**Exemple** : Vous voulez planifier le redémarrage d'un serveur distant nommé SRV-PROD à 23h00, en affichant un message de prévention aux utilisateurs connectés :
+```
+psshutdown \\SRV-PROD -r -t 23:00 -m "Maintenance système prévue à 23h00. Veuillez enregistrer votre travail."
+```
+*(Pour forcer un arrêt immédiat sans préavis sur la machine locale : `psshutdown -k -t 0 -f`)*
+
+- Documentation : [PsShutdown sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/psshutdown)
+
+- Téléchargement : [PSTools.zip](https://download.sysinternals.com/files/PSTools.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\psshutdown.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.PsTools
+```
 
 ---
 
-###
+### RDCMan (Remote Desktop Connection Manager)
+**Résumé** : RDCMan est un gestionnaire puissant pour centraliser et organiser de multiples connexions Bureau à distance (RDP). Contrairement au client Windows standard qui ne gère qu'une session à la fois, cet outil permet de regrouper des centaines de serveurs dans une interface unique, avec une arborescence hiérarchique. Il est particulièrement utile pour les administrateurs de centres de données ou de laboratoires de test.
+
+**Fonctionnalités clés** :
+
+- **Organisation en groupes** : Permet de classer les serveurs (par projet, client ou emplacement) et de lancer une connexion/déconnexion sur tout un groupe en un clic.
+
+- **Héritage des paramètres** : Un serveur peut hériter de ses identifiants ou de sa résolution d'affichage depuis son groupe parent, simplifiant les mises à jour massives (ex: changement de mot de passe).
+
+- **Vue en miniatures** : Affiche un aperçu en direct de toutes les sessions actives dans un groupe sous forme de mosaïque.
+
+- **Sécurité** : Les mots de passe sont chiffrés et stockés de manière sécurisée (CryptProtectData).
+
+**Exemple** : Vous gérez une ferme de 20 serveurs web. Au lieu d'ouvrir 20 fenêtres RDP individuelles, vous créez un groupe "Web Cluster" dans RDCMan. Vous pouvez ainsi voir l'état de chaque serveur d'un seul coup d'œil via les miniatures et basculer instantanément de l'un à l'autre dans la même fenêtre.
+
+- Documentation : [RDCMan sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/rdcman)
+
+- Téléchargement : [RDCMan.zip](https://download.sysinternals.com/files/RDCMan.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\rdcman.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.RDCMan
+```
 
 ---
 
-###
+### RegDelNull
+**Résumé** : RegDelNull est un utilitaire spécialisé en ligne de commande qui permet de trouver et de supprimer des clés de Registre contenant des caractères "Null" incorporés (le caractère `\0`). Ces caractères rendent les clés de Registre invisibles ou impossibles à supprimer via les outils standards comme `Regedit`, car l'API Windows classique interprète le caractère Null comme la fin d'une chaîne de caractères. Cette technique est parfois utilisée par des malwares ou des rootkits pour cacher leurs entrées de configuration.
+
+**Usage** : L'outil scanne le chemin spécifié et affiche les clés problématiques en remplaçant le caractère Null par un astérisque (`*`). Il demande ensuite confirmation avant toute suppression.
+
+**Exemple** : Vous suspectez la présence d'une clé cachée dans la ruche `HKEY_LOCAL_MACHINE\SOFTWARE`. Vous lancez un scan récursif (avec l'option `-s`) pour nettoyer ces entrées :
+```
+regdelnull hklm\software -s
+```
+- Documentation : [RegDelNull sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/regdelnull)
+
+- Téléchargement : [RegDelNull.zip](https://download.sysinternals.com/files/RegDelNull.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\regdelnull.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.RegDelNull
+```
 
 ---
 
