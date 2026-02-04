@@ -1800,53 +1800,214 @@ winget install Microsoft.Sysinternals.RegDelNull
 
 ---
 
-###
+### RU (Registry Usage)
+**Résumé** : RU est un utilitaire en ligne de commande qui permet de mesurer la consommation d'espace disque des clés du Registre Windows. À l'image de l'outil `du` (Disk Usage) pour les fichiers, RU parcourt les clés et sous-clés que vous spécifiez pour rapporter le nombre de valeurs et la taille totale qu'elles occupent. C'est un outil très utile pour identifier quelles parties du Registre sont anormalement volumineuses ou pour analyser la croissance des ruches (hives) du système.
+
+**Fonctionnalités clés** :
+
+- **Récursivité** : Calcule par défaut la taille cumulée d'une clé et de l'ensemble de ses sous-clés.
+
+- **Analyse de ruches** : Peut charger et analyser directement un fichier "hive" (`-h`) sans qu'il soit monté dans le Registre actif.
+
+- **Export CSV** : Permet de générer des rapports structurés (`-c`) pour un traitement ultérieur dans Excel ou une base de données.
+
+**Exemple** : Vous voulez savoir quelle place occupe la configuration logicielle dans `HKEY_LOCAL_MACHINE` jusqu'à une profondeur de 2 niveaux :
+```
+ru -l 2 hklm\software
+```
+*(Pour obtenir un rapport complet de toutes les sous-clés au format CSV : `ru -v -c hklm\software`)*
+
+- Documentation : [RU sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/ru)
+
+- Téléchargement : [RU.zip](https://download.sysinternals.com/files/RU.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\ru.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.RU
+```
 
 ---
 
-###
+### RegHide
+**Résumé** : RegHide est un outil de démonstration qui illustre une faille de sécurité (ou une "curiosité" architecturale) dans Windows. Il utilise l'API native (NTDLL) pour créer des clés de Registre dont le nom contient des caractères nuls incorporés. Comme l'API Win32 standard interprète le caractère nul comme une fin de chaîne, ces clés deviennent invisibles et impossibles à manipuler avec les outils classiques comme `Regedit`. Cet outil sert principalement à montrer comment des malwares pourraient cacher des données dans le Registre.
+
+**Concept technique** :
+
+- **API Win32** : Utilise des chaînes de caractères terminées par un caractère nul (\0).
+
+- **API Native** : Utilise des chaînes Unicode comptées (longueur explicite), ce qui permet d'inclure des caractères nuls au milieu du nom d'une clé.
+
+**Exemple** : Vous exécutez RegHide pour créer une clé "fantôme". Si vous essayez de la voir dans l'Éditeur du Registre, elle n'apparaîtra pas ou affichera une erreur. Pour la supprimer, vous devrez utiliser un outil capable de gérer ces caractères, comme RegDelNull (vu précédemment).
+
+- Documentation : [RegHide sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/reghide)
+
+- Téléchargement : [RegHide.zip](https://download.sysinternals.com/files/RegHide.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\reghide.exe
+```
+
+- Installation Winget : non disponible via winget (outil de démonstration/code source).
 
 ---
 
-###
+### RegJump
+**Résumé** : Un utilitaire extrêmement pratique en ligne de commande qui permet de gagner un temps précieux lors de l'édition du Registre. Au lieu de naviguer manuellement à travers l'arborescence complexe de `Regedit`, RegJump ouvre directement l'éditeur de registre sur le chemin spécifié. Il supporte aussi bien les noms complets des ruches (ex: `HKEY_LOCAL_MACHINE`) que leurs abréviations courantes (ex: `HKLM`).
+
+**Fonctionnalité clé** :
+
+- **Prise en charge du Presse-papiers** : Avec l'option -c, l'outil lit le chemin du registre directement depuis votre presse-papiers et y saute instantanément.
+
+**Exemple** : Vous lisez un tutoriel qui vous demande de modifier une valeur dans `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`. Au lieu de cliquer sur chaque dossier dans Regedit, vous tapez simplement :
+```
+regjump HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+```
+*(Ou, si vous avez copié le chemin : `regjump -c`)*
+
+- Documentation : [RegJump sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/regjump)
+
+- Téléchargement : [Regjump.zip](https://download.sysinternals.com/files/Regjump.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\regjump.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.RegJump
+```
 
 ---
 
-###
+### Strings
+**Résumé** : Un utilitaire en ligne de commande indispensable pour les analystes en sécurité et les développeurs. **Strings** parcourt n'importe quel fichier (exécutable, bibliothèque DLL, document, etc.) pour en extraire les séquences de caractères lisibles (chaînes de texte). Sa particularité est de pouvoir détecter aussi bien les chaînes au format **ASCII** que celles au format **UNICODE**, qui sont souvent invisibles avec les outils de recherche de texte classiques. Il est couramment utilisé pour inspecter le contenu de fichiers suspects ou pour trouver des messages d'erreur et des URLs cachés dans un programme.
+
+**Fonctionnalités clés** :
+
+- **Détection hybride** : Recherche simultanément l'ASCII et l'UNICODE par défaut.
+
+- **Récursivité** : Avec l'option `-s`, il peut analyser tous les fichiers d'un répertoire et de ses sous-dossiers.
+
+- **Personnalisation** : Vous pouvez définir la longueur minimale des chaînes à extraire (par défaut 3 caractères) avec l'option `-n`.
+
+**Exemple** : Vous voulez inspecter un fichier exécutable inconnu `logiciel.exe` pour voir s'il contient des adresses web ou des messages suspects, tout en ignorant la bannière de l'outil :
+```
+strings -nobanner logiciel.exe
+```
+*(Pour rechercher un mot spécifique dans tous les exécutables d'un dossier : `strings * | findstr /i "mot_cle"`)*
+
+- Documentation : Strings sur Microsoft Learn
+
+- Téléchargement : Strings.zip
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\strings.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.Strings
+```
 
 ---
 
-###
+### Testlimit
+**Résumé** : Testlimit est un utilitaire de ligne de commande conçu pour tester la robustesse de votre système et de vos applications en simulant l'épuisement des ressources. Il permet de "stresser" volontairement Windows en accaparant massivement de la mémoire, des handles, des processus ou des threads. C'est l'outil idéal pour les développeurs et les administrateurs qui souhaitent observer comment une application se comporte lorsqu'elle manque de ressources ou pour vérifier les limites physiques et logiques d'un système.
+
+**Fonctionnalités clés (exemples de stress)** :
+
+- **Mémoire** : Allouer/fuir de la mémoire (`-m`), de la mémoire virtuelle (`-r`) ou de la mémoire partagée (`-s`).
+
+- **Objets système** : Créer des milliers de handles (`-h`), de processus (`-p`) ou de threads (`-t`).
+
+- **Interface (USER/GDI)** : Épuiser le tas du bureau (desktop heap) ou créer des objets GDI (`-g`) pour saturer l'interface graphique.
+
+**Exemple** : Vous voulez vérifier si votre application gère correctement les erreurs d'allocation de mémoire. Vous lancez Testlimit pour consommer presque toute la RAM disponible par blocs de 100 Mo :
+```
+testlimit64.exe -m 100
+```
+*(Pour créer 10 000 handles et voir si le système reste stable : `testlimit64.exe -h -c 10000`)*
+
+- Documentation : [Testlimit sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/testlimit)
+
+- Téléchargement : [Testlimit.zip](https://download.sysinternals.com/files/TestLimit.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\testlimit64.exe
+```
+
+- Installation Winget : non disponible par défaut (outil de test spécifique).
 
 ---
 
-###
+### ZoomIt
+**Résumé** : ZoomIt est l'outil indispensable pour les présentateurs, les formateurs et les créateurs de démonstrations techniques. Il permet de zoomer instantanément sur une partie de l'écran, d'annoter en direct avec un stylet virtuel (dessin de lignes, flèches, rectangles, texte) et même de transformer l'écran en tableau blanc ou noir. Depuis ses dernières versions, il permet également l'enregistrement d'écran (vidéo MP4 ou GIF) et possède une fonction de compte à rebours (Timer) pour les pauses durant les présentations.
+
+**Fonctionnalités clés** :
+
+- **Zoom statique et dynamique** : Zoomer sur une zone fixe ou continuer à utiliser Windows tout en étant zoomé (Live Zoom).
+
+- **Annotations** : Dessiner des formes géométriques parfaites (Shift pour lignes, Ctrl pour rectangles, Tab pour ellipses, Ctrl+Shift pour flèches) et écrire du texte.
+
+- **Enregistrement** : Capturer une zone ou l'intégralité de l'écran en vidéo.
+
+- **DemoType** : Une fonction avancée pour simuler la saisie de code ou de texte durant une démo.
+
+**Exemple** : Lors d'une réunion sur Teams, vous voulez montrer un détail précis dans un fichier Excel. Vous appuyez sur `Ctrl+1` pour zoomer, puis vous maintenez `Ctrl+Maj` en dessinant avec la souris pour pointer une cellule avec une flèche rouge. Pour finir, vous appuyez sur W pour passer sur un tableau blanc et expliquer un schéma rapide.
+
+- Documentation : [ZoomIt sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/zoomit)
+
+- Téléchargement : [ZoomIt.zip](https://download.sysinternals.com/files/ZoomIt.zip)
+
+- Utilisation en ligne :
+```
+\\live.sysinternals.com\tools\zoomit.exe
+```
+
+- Installation Winget :
+```
+winget install Microsoft.Sysinternals.ZoomIt
+```
 
 ---
 
-###
+## Sysinternals Suite
+**Résumé** : La Sysinternals Suite est le pack ultime regroupant l'intégralité des utilitaires développés par Mark Russinovich et son équipe. Au lieu de télécharger chaque outil individuellement, cette suite permet d'obtenir en une seule fois plus de 70 outils de diagnostic, de sécurité et de gestion système (incluant les célèbres Process Explorer, Autoruns, PsExec, Sysmon, etc.). C'est la boîte à outils indispensable pour tout administrateur système, expert en cybersécurité ou utilisateur avancé de Windows.
+
+**Contenu de la suite** : Elle inclut des outils classés par catégories :
+
+- **Gestion des processus** (Process Explorer, Procmon, PsList...)
+
+- **Sécurité** (AccessChk, Autoruns, Sigcheck, Sysmon...)
+
+- **Réseau** (TCPView, PsPing, WhoIs...)
+
+- **Utilitaires fichiers et disques** (SDelete, Disk2vhd, DU, Junction...)
+
+- **Informations système** (Coreinfo, RAMMap, Handle...)
+
+**Exemple d'usage** : Plutôt que de chercher quel outil utiliser pour réparer un PC infecté ou lent, vous copiez l'intégralité de la suite sur une clé USB. Vous avez alors immédiatement accès à Autoruns pour voir ce qui démarre avec Windows, Process Explorer pour débusquer les processus cachés et Strings pour analyser des fichiers suspects.
+
+- Documentation : [Sysinternals Suite sur Microsoft Learn](https://learn.microsoft.com/fr-fr/sysinternals/downloads/sysinternals-suite)
+
+- Téléchargement (Standard) : [SysinternalsSuite.zip](https://download.sysinternals.com/files/SysinternalsSuite.zip)
+
+- Versions spécifiques : Disponible aussi pour `Nano Server` et `ARM64`.
+
+- Installation via Microsoft Store : [Lien vers le Store](https://www.microsoft.com/store/apps/9P7KNL5RWT25)
+
+Installation Winget :
+```
+winget install Microsoft.SysinternalsSuite
+```
 
 ---
-
-###
-
----
-
-###
-
----
-
-###
-
----
-
-###
-
----
-
-###
-
----
-
-###
-
