@@ -129,4 +129,9 @@
 | :-------------------: | :----------------------------------------------------: |
 |      `Get-WmiObject win32_bios \| select Serialnumber` ou `Get-ComputerInfo -Property "Biosseralnumber"`     |      Permet d'obtenir le numéro de série de la carte mère      |
 
+### Raccourci clavier utile
+  
+|     **Commandes**     |                       **Action**                       |
+| :-------------------: | :----------------------------------------------------: |
+|`Win + Ctrl + Shift + B`|Réinitialise instantanément le pilote graphique|
 
