@@ -11,17 +11,17 @@
 3. Vous vérifiez avec **Autoruns** comment ce processus s'est programmé pour démarrer automatiquement.
 
 #### Liens Utiles
-Documentation officielle : [Portail Microsoft Learn Sysinternals](https://learn.microsoft.com/fr-fr/sysinternals/)
+- Documentation officielle : [Portail Microsoft Learn Sysinternals](https://learn.microsoft.com/fr-fr/sysinternals/)
 
-Téléchargement de la suite complète : [SysinternalsSuite.zip](https://download.sysinternals.com/files/SysinternalsSuite.zip)
+- Téléchargement de la suite complète : [SysinternalsSuite.zip](https://download.sysinternals.com/files/SysinternalsSuite.zip)
 
-Accès direct (Live) : 
+- Accès direct (Live) : 
 Accessible via l'explorateur de fichier ou Win+R
 ```
 \\live.sysinternals.com\tools
 ```
 
-#### Installation via Winget
+- Installation via Winget
 Pour installer l'intégralité de la suite d'un seul coup sur votre machine :
 ```
 winget install Microsoft.Sysinternals
