@@ -50,6 +50,7 @@
 |  ``powercfg.cpl``   | Modifier les paramètres d’alimentation. |
 |    ``mmsys.cpl``    |   Configurer les périphériques audio.   |
 |`inetcpl.cpl`| Ouvrir propriété de Internet |
+|`main.cpl`|Ouvrir les parametres de la souris|
 
 
 ### Commandes réseau et connectivité :
