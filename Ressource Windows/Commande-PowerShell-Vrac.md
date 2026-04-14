@@ -173,9 +173,9 @@ $Result = $Files.ShowDialog()
 # Si l'utilisateur a cliqué sur "Ouvrir"
 if ($Result -eq 'OK') {
     $MaVariableFichier = $FileBrowser.FileName
-    Write-Host "Fichier sélectionné : $MaVariableFichier" -ForegroundColor Cyan
+    Write-Host "Fichier selectionne : $MaVariableFichier" -ForegroundColor Cyan
 } else {
-    Write-Host "Sélection annulée." -ForegroundColor Yellow
+    Write-Host "Selection annulee." -ForegroundColor Yellow
     exit
 }
 
