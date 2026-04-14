@@ -156,31 +156,38 @@ Pour exporter la liste dans un fichier :
 
 ## Bout de script powershell pour aller chercher un fichier en mode fenetre 
 
-```
-# Ajout de l'assembly nécessaire pour les boîtes de dialogue
+```PowerShell
+# --- DEBUT DU BLOC DE SELECTION ---
 Add-Type -AssemblyName System.Windows.Forms
 
-# Configuration de la fenêtre de sélection, Variable $Files a adapter selon le script de destination
-$Files = New-Object System.Windows.Forms.OpenFileDialog -Property @{
-    InitialDirectory = [Environment]::GetFolderPath('Desktop') # Dossier de départ (ici le Bureau)
-    Filter = "Tous les fichiers (*.*)|*.*" # Filtres de fichiers
-    Title = "Sélectionnez votre fichier de log"
+$Explorateur = New-Object System.Windows.Forms.OpenFileDialog -Property @{
+    # Configuration du dossier de départ
+    InitialDirectory = "C:\" 
+    
+    # Configuration des filtres (Nom|*.extension)
+    Filter = "Tous les fichiers (*.*)|*.*"
+    
+    # Index du filtre sélectionné par défaut (ici le premier : *.*)
+    FilterIndex = 1
+    
+    # Titre de la fenêtre
+    Title = "Veuillez selectionner un fichier"
 }
 
-# Affiche la fenêtre et récupère le résultat, bien penser a changer la variable $Files selon le script de destination
-$Result = $Files.ShowDialog()
-
-# Si l'utilisateur a cliqué sur "Ouvrir"
-if ($Result -eq 'OK') {
-    $MaVariableFichier = $FileBrowser.FileName
-    Write-Host "Fichier selectionne : $MaVariableFichier" -ForegroundColor Cyan
+# Affiche la fenêtre et vérifie si l'utilisateur clique sur "Ouvrir"
+if ($Explorateur.ShowDialog() -eq 'OK') {
+    $FichierSelectionne = $Explorateur.FileName
 } else {
-    Write-Host "Selection annulee." -ForegroundColor Yellow
-    exit
+    Write-Host "Selection annulee par l'utilisateur." -ForegroundColor Yellow
+    return # Stoppe le script si pas de fichier
 }
+# --- FIN DU BLOC DE SELECTION ---
 
-# --- Ton script continue ici en utilisant $MaVariableFichier ---
+# Test de sortie pour vérifier que ça marche :
+Write-Host "Le script va travailler sur : $FichierSelectionne" -ForegroundColor Cyan
 ```
+
+### Modification possible du filtre de format :  
 
 Le format du filtre fonctionne toujours par paires : `"Nom affiché|*.extension"`.  
 Si tu veux mettre plusieurs extensions dans un seul choix, on utilise le point-virgule.  
@@ -215,5 +222,61 @@ Le combo "Spécial Admin" :
 ```PowerShell
 Filter = "Logs et Textes (*.log; *.txt)|*.log;*.txt|Scripts (*.ps1; *.bat; *.vbs)|*.ps1
 ```
+
+### Ciblage de dossier spécifique
+
+Voici les différentes options pour `InitialDirectory` :  
+
+1. Chemins statiques (En dur)  
+
+Utile si ton infrastructure est standardisée.  
+
+- Dossier spécifique : `"C:\Temp\PingLogs"`
+- Racine d'un disque : `"D:\"`
+- Chemin réseau (UNC) : `"\\ServeurDeLogs\Partage\Archives"`
+
+2. Dossiers Spéciaux Windows (Dynamiques)  
+
+C'est la méthode la plus propre car elle s'adapte à chaque utilisateur (le Bureau n'a pas le même nom selon la session). On utilise la classe `[Environment]`.  
+
+|Destination|Code à mettre dans InitialDirectory|
+|:-|:-|
+|Bureau|`[Environment]::GetFolderPath('Desktop')`|
+|Documents|`[Environment]::GetFolderPath('MyDocuments')`|
+|Téléchargements|`"$env:USERPROFILE\Downloads"`|
+|Dossier Utilisateur|`"$env:USERPROFILE"`|
+|Dossier Windows|`[Environment]::GetFolderPath('Windows')`|
+
+3. Chemins relatifs au script  
+
+Très pratique si tu distribues ton script à des collègues et que les logs sont dans un sous-dossier du script.
+
+- Le dossier où se trouve le script :  
+  `$PSScriptRoot`
+- Un sous-dossier "Logs" situé à côté du script :  
+  `Join-Path $PSScriptRoot "Logs"`
+ 
+4. Variables d'environnement (Raccourcis)
+
+PowerShell peut utiliser les variables système directement avec le préfixe `$env`:.
+
+- Dossier temporaire de Windows :   
+  `$env:TEMP`
+- Dossier Program Files :  
+  `$env:ProgramFiles`
+
+Exemple de mise en pratique "Pro" :Voici comment je l'écrirais pour que ce soit robuste (il essaye un dossier précis, sinon il retombe sur ses pieds) :
+
+```PowerShell
+$dossierVise = "C:\Toto"
+
+$Explorateur.InitialDirectory = if (Test-Path $dossierVise) { 
+    $dossierVise 
+} else { 
+    [Environment]::GetFolderPath('Desktop') 
+}
+```
+Petite astuce : Si tu mets un chemin qui n'existe pas et que tu n'as pas fait de vérification, Windows ouvrira la boîte de dialogue par défaut dans "Bureau".
+
 
 ---
