@@ -1,11 +1,11 @@
 
 ## Permet de créer un fichier `.key` contenant un texte crypté, pratique pour les mots de passe
-```
+```PowerShell
 Read-Host -AsSecureString | ConvertFrom-SecureString | Out-File -FilePath "C:\Chemin\De\Votre\Choix\password.key"
 ```
 
 ## Cette commande ne fonctionnera que sur l'ordinateur et avec le compte qui a créé le fichier
-```
+```PowerShell
 $securePassword = Get-Content -Path "C:\Chemin\De\Votre\Choix\password.key" | ConvertTo-SecureString
 $credential = New-Object System.Management.Automation.PSCredential("nomdutilisateurfictif", $securePassword)
 $credential.GetNetworkCredential().Password
@@ -15,7 +15,7 @@ $credential.GetNetworkCredential().Password
 
 ## Bloc à ajouter pour une élévation de privilege d'un script
 ### --- Début du bloc d'auto-élévation ---
-```
+```PowerShell
 # Vérifie si la session actuelle a les droits d'administrateur
 $currentUser = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
 if (-not $currentUser.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
@@ -28,7 +28,7 @@ if (-not $currentUser.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
 ```
 
 ### --- Fin du bloc d'auto-élévation ---
-```
+```PowerShell
 # Le reste de votre script, qui s'exécutera maintenant avec les droits admin, commence ici.
 Write-Host "Le script s'exécute avec les privilèges d'administrateur."
 # ... votre code ...
@@ -38,7 +38,7 @@ Write-Host "Le script s'exécute avec les privilèges d'administrateur."
 
 ## Bloc pour ajouter une journalisation facile aux scripts
 
-```
+```PowerShell
 # Preparation de la journalisation
 $LogFile = "C:\Windows\Temp\toto.log"
 
@@ -78,13 +78,13 @@ La variable `%~dp0` est une variable magique dans les scripts batch. Elle est au
 ### Exemple concret
 
 **Avant (chemin fixe) :**
-```
+```Batch
 :: Ne fonctionne que si le fichier est exactement ici
 copy "D:\Installation\config.txt" "%APPDATA%\MonApp\"
 ```
 
 Après (chemin portable) :
-```
+```Batch
 :: Fonctionne peu importe où se trouve le dossier du script
 copy "%~dp0config.txt" "%APPDATA%\MonApp\"
 ```
@@ -95,7 +95,7 @@ copy "%~dp0config.txt" "%APPDATA%\MonApp\"
 
 ## Déclencher une action 
 
-```
+```PowerShell
 # 1. Déclenchement de la question et capture de la réponse
 $reponse = Read-Host "Voulez-vous exécuter cette action ? (O/N)"
 $FunctionName = "Nom de la fonction
@@ -114,10 +114,10 @@ if ($reponse -match '^[oO]') {
 
 ## Commande pour créer un wrapper et aider a lancer un script powershell
 
-```
+```Batch
 powershell.exe -NonInteractive -ExecutionPolicy Bypass -File "%~dp0votre_script.ps1"
 ```
-```
+```Batch
 @echo off
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0votre_script.ps1"
 ```
@@ -125,7 +125,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0votre_script.ps1"
 ---
 ## Savoir a qui appartient un SID
 
-```
+```PowerShell
 $SID = "S-1-5-21-1125411162-415437191-1846952604-512"
 $objSID = New-Object System.Security.Principal.SecurityIdentifier($SID)
 $objUser = $objSID.Translate([System.Security.Principal.NTAccount])
@@ -141,14 +141,14 @@ Cette commande permet de :
 - Faciliter un audit ou un dépannage
 - Gagner du temps en support utilisateur
 
-```
+```PowerShell
 Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* |
 Select DisplayName, DisplayVersion, Publisher |
 Sort DisplayName 
 ```
 
 Pour exporter la liste dans un fichier :
-```
+```PowerShell
 ... | Export-Csv "C:\Temp\Software_List.csv" -NoTypeInformation
 ```
 
