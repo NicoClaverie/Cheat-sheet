@@ -151,3 +151,69 @@ Pour exporter la liste dans un fichier :
 ```
 ... | Export-Csv "C:\Temp\Software_List.csv" -NoTypeInformation
 ```
+
+---
+
+## Bout de script powershell pour aller chercher un fichier en mode fenetre 
+
+```
+# Ajout de l'assembly nécessaire pour les boîtes de dialogue
+Add-Type -AssemblyName System.Windows.Forms
+
+# Configuration de la fenêtre de sélection, Variable $Files a adapter selon le script de destination
+$Files = New-Object System.Windows.Forms.OpenFileDialog -Property @{
+    InitialDirectory = [Environment]::GetFolderPath('Desktop') # Dossier de départ (ici le Bureau)
+    Filter = "Tous les fichiers (*.*)|*.*" # Filtres de fichiers
+    Title = "Sélectionnez votre fichier de log"
+}
+
+# Affiche la fenêtre et récupère le résultat, bien penser a changer la variable $Files selon le script de destination
+$Result = $Files.ShowDialog()
+
+# Si l'utilisateur a cliqué sur "Ouvrir"
+if ($Result -eq 'OK') {
+    $MaVariableFichier = $FileBrowser.FileName
+    Write-Host "Fichier sélectionné : $MaVariableFichier" -ForegroundColor Cyan
+} else {
+    Write-Host "Sélection annulée." -ForegroundColor Yellow
+    exit
+}
+
+# --- Ton script continue ici en utilisant $MaVariableFichier ---
+```
+
+Le format du filtre fonctionne toujours par paires : `"Nom affiché|*.extension"`.  
+Si tu veux mettre plusieurs extensions dans un seul choix, on utilise le point-virgule.  
+
+Voici une liste de filtres courants que tu peux copier-coller selon tes besoins :  
+
+1. Les classiques (Scripts et Data)
+- Fichiers CSV uniquement :  
+  `"Fichiers CSV (*.csv)|*.csv"`
+
+- Scripts PowerShell :  
+  `"Scripts PowerShell (*.ps1)|*.ps1"`
+
+- Fichiers Texte et Logs :  
+  `"Fichiers Texte et Log (*.txt; *.log)|*.txt;*.log"`
+
+- Fichiers JSON / XML (Config) :  
+  `"Fichiers de configuration (*.json; *.xml)|*.json;*.xml"`
+
+2. Bureautique
+- Fichiers Excel :  
+  `"Tableaux Excel (*.xlsx; *.xls)|*.xlsx;*.xls"`
+
+- Documents PDF :  
+  `"Documents PDF (*.pdf)|*.pdf"`
+
+3. Les "Combinés" (Plusieurs choix dans la liste déroulante)
+Si tu veux offrir plusieurs options à l'utilisateur dans le menu déroulant de la fenêtre, il suffit de les enchaîner avec des barres verticales (pipes) `|`.
+
+Le combo "Spécial Admin" :
+
+```PowerShell
+Filter = "Logs et Textes (*.log; *.txt)|*.log;*.txt|Scripts (*.ps1; *.bat; *.vbs)|*.ps1
+```
+
+---
