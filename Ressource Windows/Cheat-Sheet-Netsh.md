@@ -11,7 +11,8 @@
 |-----------------------------------|---------------------------------------------------------|
 | `netsh help`                      | Affiche l’aide pour les commandes disponibles.          |
 | `netsh interface show interfaces` | Liste les interfaces réseau et leur statut.             |
-| `netsh diag show all`             | Exécute un diagnostic réseau complet.                   |
+| `netsh wlan show all`             | Exécute un diagnostic réseau complet.                   |
+| `netsh wlan show wlanreport`             | La commande la plus complète pour analyser les problèmes Wi-Fi récents. Elle génère un fichier HTML très détaillé.                   |
 
 ---
 
