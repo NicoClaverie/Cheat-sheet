@@ -1,5 +1,6 @@
 # Cheat sheet commande windows
 
+## Commandes Windows PRO
 
 ### Commandes Tiers
 
@@ -137,3 +138,10 @@
 | :-------------------: | :----------------------------------------------------: |
 |`Win + Ctrl + Shift + B`|Réinitialise instantanément le pilote graphique|
 
+---
+
+## Commandes Windows Server
+
+|     **Commandes**     |                       **Action**                       |
+| :-------------------: | :----------------------------------------------------: |
+|`sconfig`|Menu Configuration du serveur en CLI|
