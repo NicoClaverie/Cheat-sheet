@@ -465,3 +465,5 @@ Utilitaire pour effectuer des sauvegardes et restaurations avec un PBS distant.
     proxmox-backup-client restore etc.pxar /restore/etc --repository root@pbs@10.10.10.101:datastore1
     ```
 ***
+
+Source : https://www.nakivo.com/fr/blog/top-10-proxmox-cli-commands/
