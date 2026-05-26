@@ -1,8 +1,163 @@
-Toutes mes excuses, vous avez tout à fait raison. Voici la version exhaustive et complète du document Markdown, incluant absolument **toutes les commandes et exemples** fournis dans la source, parfaitement formatés dans des blocs de code pour être facilement copiés-collés dans votre terminal ou votre documentation GitHub.
+# Guide des 10 Commandes CLI Proxmox Essentielles pour Administrateurs
 
-***
+L'environnement virtuel Proxmox (VE) dispose d'une interface graphique intuitive, mais l'utilisation de l'interface en ligne de commande (CLI) est indispensable pour les configurations avancées, la création de scripts et l'automatisation. Voici les 10 commandes incontournables.
 
-# Guide Complet des Commandes CLI Proxmox Essentielles
+## 1. `qm` (QEMU Manager)
+La commande principale pour interagir avec les machines virtuelles (VM) basées sur QEMU/KVM.
+
+*   **Lister les VMs (affiche le statut et l'ID) :**
+    ```bash
+    qm list
+    ```
+   
+*   **Créer une nouvelle VM :**
+    ```bash
+    qm create 103 --name "DebianVM" --memory 2048 --net0 virtio,bridge=vmbr0 --sockets 1 --cores 2 --ostype l26
+    ```
+    *(Crée une VM Linux nommée "DebianVM", 2 Go de RAM, 2 cœurs)*
+*   **Gestion de l'alimentation :**
+    ```bash
+    qm start 103     # Démarre la VM 103
+    qm shutdown 101  # Arrête proprement la VM 101
+    qm stop 103      # Arrêt forcé (immédiat) de la VM 103
+    ```
+*   **Snapshots et Clonage :**
+    ```bash
+    qm snapshot 103 "before_upgrade" # Crée un instantané
+    qm rollback 103 "before_upgrade" # Restaure l'instantané
+    qm clone 103 104 --name "DebianClone" --full # Clone complet de la VM
+    ```
+
+## 2. `pve-firewall`
+Gère les règles de pare-feu pour les nœuds, VMs et conteneurs Proxmox.
+
+*   **Vérifier le statut :**
+    ```bash
+    pve-firewall status
+    ```
+   
+*   **Autoriser le trafic SSH :**
+    ```bash
+    pve-firewall create rule -action accept -macro ssh
+    ```
+   
+
+## 3. `pvesm` (Proxmox VE Storage Manager)
+Gère les pools de stockage, l'allocation de volumes et les répertoires.
+
+*   **Voir le statut des pools de stockage :**
+    ```bash
+    pvesm status
+    ```
+   
+*   **Créer un nouveau pool (basé sur un répertoire) :**
+    ```bash
+    pvesm create dir new-datastore1 --path /mnt/storage-name --content images,iso
+    ```
+   
+
+## 4. `pveum` (Proxmox VE User Management)
+Gère les utilisateurs, les groupes, les rôles et les permissions (ACL).
+
+*   **Ajouter un utilisateur :**
+    ```bash
+    pveum useradd user2@pve --password UserSecretPassword111 --comment "user2 – admin group" --groups admin
+    ```
+   
+*   **Ajouter un rôle et définir des privilèges :**
+    ```bash
+    pveum roleadd vmmanager --privs VM.PowerMgmt,VM.Config.CDROM
+    ```
+   
+
+## 5. `pvesh` (Proxmox API Shell)
+Permet d'interagir directement avec l'API REST de Proxmox en ligne de commande.
+
+*   **Lister les ressources du cluster :**
+    ```bash
+    pvesh ls /cluster/resources
+    ```
+   
+*   **Créer une ressource (ex: nouvelle VM) :**
+    ```bash
+    pvesh create /nodes/pve-node1/qemu --vmid 106 --name new-vm-name --memory 2048 --cores 2
+    ```
+   
+
+## 6. `pvecm` (Proxmox VE Cluster Manager)
+Gère la création et la configuration des clusters, permettant la haute disponibilité et la migration à chaud.
+
+*   **Créer un cluster (à exécuter sur le nœud maître) :**
+    ```bash
+    pvecm create cluster01
+    ```
+   
+*   **Ajouter un nœud au cluster :**
+    ```bash
+    pvecm add 192.168.101.121
+    ```
+   
+
+## 7. `hamanager` (High Availability Manager)
+Configure et surveille les ressources de Haute Disponibilité (HA).
+
+*   **Ajouter une VM à la Haute Disponibilité :**
+    ```bash
+    ha-manager add 105 --max-restarts 3 --max-migrate-tries 1
+    ```
+    *(Tente 3 redémarrages et 1 migration en cas de panne du nœud)*
+*   **Migrer manuellement une VM HA :**
+    ```bash
+    ha-manager migrate 106 pve-node2
+    ```
+   
+
+## 8. `vzdump`
+Crée des sauvegardes (snapshots, suspend, stop) pour les VMs et les conteneurs.
+
+*   **Sauvegarder une VM avec compression :**
+    ```bash
+    vzdump 101 --storage local --compress gzip --maxfiles 3
+    ```
+    *(Sauvegarde la VM 101 en la compressant avec gzip et conserve les 3 dernières sauvegardes)*
+*   **Sauvegarder toutes les VMs en mode instantané :**
+    ```bash
+    vzdump --all --mode snapshot --storage nfs-backup --bwlimit 20480 --remove old --maxfiles 7
+    ```
+   
+
+## 9. `qmrestore`
+Restaure les machines virtuelles à partir d'une sauvegarde générée par `vzdump`.
+
+*   **Restaurer sur l'ID d'origine (écrase la VM existante) :**
+    ```bash
+    qmrestore /var/lib/vz/dump/vzdump-qemu-101-2023_08_27-00_00_00.vma 101
+    ```
+   
+*   **Restaurer comme nouvelle VM avec un nom spécifique :**
+    ```bash
+    qmrestore /mnt/pve/nfs-backup/dump/vzdump-qemu-101-2023_08_27-00_00_00.vma 103 --hostname restored-vm --name "MyRestoredVM"
+    ```
+   
+
+## 10. `proxmox-backup-client`
+Utilitaire pour interagir spécifiquement avec un Proxmox Backup Server (PBS).
+
+*   **Effectuer une sauvegarde vers le serveur :**
+    ```bash
+    proxmox-backup-client backup etc.pxar /etc --repository root@pbs@10.10.10.101:datastore1
+    ```
+   
+*   **Restaurer depuis le serveur :**
+    ```bash
+    proxmox-backup-client restore etc.pxar /restore/etc --repository root@pbs@10.10.10.101:datastore1
+    ```
+   
+
+---
+
+
+# Guide Complet des Commandes CLI Proxmox Essentielles (Version 2)
 
 Ce document regroupe l'intégralité des commandes CLI spécifiques à Proxmox (QEMU/KVM, pare-feu, stockage, utilisateurs, API, cluster, haute disponibilité, sauvegardes et restaurations).
 
