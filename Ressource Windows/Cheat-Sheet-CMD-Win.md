@@ -131,6 +131,7 @@
 | :-------------------: | :----------------------------------------------------: |
 |      `Get-WmiObject win32_bios \| select Serialnumber` ou `Get-ComputerInfo -Property "Biosseralnumber"`     |      Permet d'obtenir le numéro de série de la carte mère      |
 |`net stats workstation`|Outil de surveillance et diagnostic réseau en temps réel depuis le dernier allumage|
+|`Get-ADComputer -Identity  LAP0264 -properties lastlogondate`| Connaitre la derniere connexion d'un ordinateur|
 
 ### Raccourci clavier utile
   
