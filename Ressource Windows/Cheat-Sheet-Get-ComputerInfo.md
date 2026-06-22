@@ -75,6 +75,10 @@ Get-ComputerInfo -Property OsName,WindowsVersion,OsBuildNumber,CsModel,CsManufac
 Get-ComputerInfo | Out-File "$env:USERPROFILE\Desktop\PC-Info.txt"
 ```
 
+```
+Get-ADComputer -Identity  XXXXX -properties lastlogondate
+```
+
 # 📝 Script PowerShell
 
 ``` 
