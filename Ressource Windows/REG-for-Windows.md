@@ -32,7 +32,7 @@ Si vous souhaitez désactiver ces nouveaux avertissements, c'est possible. C'est
 
 Il y a une valeur de Registre que vous pouvez configurer :
 
-Chemin : `HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services\Client`
-Nom de la valeur : `RedirectionWarningDialogVersion`
-Données de la valeur : `1`
+Chemin : `HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services\Client`  
+Nom de la valeur : `RedirectionWarningDialogVersion`  
+Données de la valeur : `1`  
 Type : `REG_DWORD`
