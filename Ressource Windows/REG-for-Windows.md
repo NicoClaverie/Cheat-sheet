@@ -11,6 +11,8 @@ Windows Registry Editor Version 5.00
 "verbosestatus"=dword:00000001
 ```
 
+---
+
 ## Désactiver le MPO
 
 Active un mode de test (OverlayTestMode=5) pour le Desktop Window Manager (DWM), qui gère le rendu et les superpositions graphiques du bureau Windows.  
@@ -22,3 +24,15 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Dwm]
 "OverlayTestMode"=dword:00000005
 ```
+
+---
+
+## Désactiver les nouveaux avertissements RDP
+Si vous souhaitez désactiver ces nouveaux avertissements, c'est possible. C'est une option pertinente le temps de faire quelques tests, et pourquoi pas voir comment signer vos fichiers RDP.
+
+Il y a une valeur de Registre que vous pouvez configurer :
+
+Chemin : `HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services\Client`
+Nom de la valeur : `RedirectionWarningDialogVersion`
+Données de la valeur : `1`
+Type : `REG_DWORD`
