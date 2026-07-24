@@ -280,3 +280,32 @@ Petite astuce : Si tu mets un chemin qui n'existe pas et que tu n'as pas fait de
 
 
 ---
+
+## Script PowerShell du Magick Packet
+
+```PowerShell
+$mac = "XX-XX-XX-XX-XX-XX"
+$LanCible = "192.168.1.255"  # Adresse broadcast du LAN cible
+$Port = 9
+
+$macBytes = $mac -split "[:-]" | ForEach-Object {
+    [byte]("0x$_")
+}
+
+$packet = [byte[]](,0xFF * 6 + ($macBytes * 16))
+
+if ($packet.Length -eq 102) {
+    Write-Host "Paquet WoL valide ($($packet.Length) octets)"
+
+    $udp = New-Object System.Net.Sockets.UdpClient
+    $udp.EnableBroadcast = $true
+    $udp.Connect($LanCible,$Port)
+    [void]$udp.Send($packet,$packet.Length)
+    $udp.Close()
+
+    Write-Host "Magic Packet envoyé vers $LanCible pour $mac"
+}
+else {
+    Write-Host "Attention : taille inattendue ($($packet.Length) octets)"
+}
+```
