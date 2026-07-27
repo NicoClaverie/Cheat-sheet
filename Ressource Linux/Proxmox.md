@@ -1,3 +1,33 @@
+# Ensemble de commandes Proxmox
+
+## Mise a jour de proxmox
+
+Commence par vérifier la version actuelle :
+```bash
+pveversion
+```
+
+Puis mets à jour les paquets :
+```bash
+apt update
+apt full-upgrade
+```
+ou
+```bash
+apt-get update
+apt-get dist-upgrade
+```
+
+Redémarrer :
+```bash
+reboot
+```
+
+Puis revérifier la version :
+```bash
+pveversion
+```
+
 # Guide des 10 Commandes CLI Proxmox Essentielles pour Administrateurs
 
 L'environnement virtuel Proxmox (VE) dispose d'une interface graphique intuitive, mais l'utilisation de l'interface en ligne de commande (CLI) est indispensable pour les configurations avancées, la création de scripts et l'automatisation. Voici les 10 commandes incontournables.
