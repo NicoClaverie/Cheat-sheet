@@ -16,7 +16,7 @@
 |Action|Commande PowerShell|
 |:-:|:-:|
 |Extraire le DN directement|`(Get-ADComputer -Identity "LAP0274").DistinguishedName`|
-|Dernière connexion + OS|`Get-ADComputer -Identity "LAP0296" -Properties LastLogonDate, OperatingSystem | Select-Object Name, LastLogonDate, OperatingSystem`|
+|Dernière connexion + OS|`Get-ADComputer -Identity "LAP0296" -Properties LastLogonDate, OperatingSystem \| Select-Object Name, LastLogonDate, OperatingSystem`|
 |Toutes les machines d'une OU|`Get-ADComputer -SearchBase "OU=Laptops,OU=Workstations,DC=domaine,DC=local" -Filter *`|
 |Postes inactifs (+90 jours)|`Search-ADAccount -AccountInactive -TimeSpan 90.00:00:00 -ComputersOnly`|
 
