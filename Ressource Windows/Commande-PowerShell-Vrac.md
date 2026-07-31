@@ -315,3 +315,19 @@ else {
 ```PowerShell
 (New-Object -ComObject WScript.Shell).Popup("Votre message ici", 0, "Titre de la fenêtre", 64)
 ```
+
+Explication rapide des paramètres :  
+- "Votre message ici" : Le texte à afficher dans la fenêtre.
+
+- 0 : Le temps d'affichage en secondes avant fermeture automatique (0 = reste ouvert jusqu'à ce qu'on clique sur OK).
+
+- "Titre de la fenêtre" : Le titre affiché en haut de la fenêtre.
+
+- 64 : L'icône affichée (64 = Information, 48 = Avertissement, 16 = Erreur, 32 = Question).
+
+Alternative (style boîte de dialogue Windows Forms) :
+Si vous préférez le style classique de boîte de message Windows :  
+```Powershell
+Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show("Votre message ici", "Titre")
+```
+
