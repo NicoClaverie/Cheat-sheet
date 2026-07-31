@@ -317,13 +317,13 @@ else {
 ```
 
 Explication rapide des paramètres :  
-- "Votre message ici" : Le texte à afficher dans la fenêtre.
+- `"Votre message ici"` : Le texte à afficher dans la fenêtre.
 
-- 0 : Le temps d'affichage en secondes avant fermeture automatique (0 = reste ouvert jusqu'à ce qu'on clique sur OK).
+- `0` : Le temps d'affichage en secondes avant fermeture automatique (0 = reste ouvert jusqu'à ce qu'on clique sur OK).
 
-- "Titre de la fenêtre" : Le titre affiché en haut de la fenêtre.
+- `"Titre de la fenêtre"` : Le titre affiché en haut de la fenêtre.
 
-- 64 : L'icône affichée (64 = Information, 48 = Avertissement, 16 = Erreur, 32 = Question).
+- `64` : L'icône affichée (64 = Information, 48 = Avertissement, 16 = Erreur, 32 = Question).
 
 Alternative (style boîte de dialogue Windows Forms) :
 Si vous préférez le style classique de boîte de message Windows :  
