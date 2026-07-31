@@ -10,6 +10,7 @@
 |Comptes désactivés|`Get-ADUser -Filter {Enabled -eq $false} \| Select-Object SamAccountName, Name`|
 |Chercher par nom partiel|`Get-ADUser -Filter "Name -like '*USER*'" \| Select-Object SamAccountName, Name`|
 |Chercher par email|`Get-ADUser -Filter "mail -like '*@domaine.com'" -Properties mail`|
+|Savoir qui peux se connecter sur un poste |`Get-ADUser -Filter 'LogonWorkstations -like "*"' -Properties LogonWorkstations \|     Where-Object { $_.LogonWorkstations -split ',' -contains 'PCXXXX' } \|    Select-Object Name, SamAccountName, LogonWorkstations`|
 
 ## 💻 Ordinateurs (Get-ADComputer)
 
