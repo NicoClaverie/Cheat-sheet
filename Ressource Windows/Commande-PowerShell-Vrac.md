@@ -309,3 +309,9 @@ else {
     Write-Host "Attention : taille inattendue ($($packet.Length) octets)"
 }
 ```
+
+## Commande pour afficher un message sur l'écran
+
+```PowerShell
+(New-Object -ComObject WScript.Shell).Popup("Votre message ici", 0, "Titre de la fenêtre", 64)
+```
