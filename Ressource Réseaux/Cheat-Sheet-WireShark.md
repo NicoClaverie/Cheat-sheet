@@ -36,3 +36,4 @@ Essentiels pour Wireshark, organisée par catégorie pour une utilisation plus f
 |`http.request.method == "POST"`|	Isole les requêtes HTTP de type POST.	|`http.request.method == "GET"`|
 |`http.response.code >= 400`|	Affiche toutes les réponses HTTP qui sont des erreurs.|`http.response.code`|
 |`frame contains "password"`|	Recherche une chaîne de caractères dans la charge utile de n'importe quel paquet.|`http contains "user"`|
+|`udp.port == 67  udp.port == 68`| Vérifie le trafic DHCP (bien penser a ajouter les deux pipes entre les ports) |
