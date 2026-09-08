@@ -331,3 +331,13 @@ Si vous préférez le style classique de boîte de message Windows :
 Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show("Votre message ici", "Titre")
 ```
 
+---
+
+## Commande pour activer ou désactiver l'écran tactile
+
+```powershell
+Get-PnpDevice -FriendlyName "Écran tactile HID" | Disable-PnpDevice -Confirm:$false
+```
+```powershell
+Get-PnpDevice -FriendlyName "Écran tactile HID" | Enable-PnpDevice -Confirm:$false
+```
