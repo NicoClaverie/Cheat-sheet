@@ -278,10 +278,11 @@ $Explorateur.InitialDirectory = if (Test-Path $dossierVise) {
 ```
 Petite astuce : Si tu mets un chemin qui n'existe pas et que tu n'as pas fait de vérification, Windows ouvrira la boîte de dialogue par défaut dans "Bureau".
 
-
 ---
 
-## Script PowerShell du Magick Packet
+## PowerShell du Magick Packet
+
+### Script complet 
 
 ```PowerShell
 $mac = "XX-XX-XX-XX-XX-XX"
@@ -308,6 +309,12 @@ if ($packet.Length -eq 102) {
 else {
     Write-Host "Attention : taille inattendue ($($packet.Length) octets)"
 }
+```
+
+### Commande Simple 
+
+```Powershell
+$mac="XX:XX:XX:XX:XX:XX"; $p=[byte[]](,0xFF*6+($mac -split "[:-]"|%{ [byte]"0x$_" })*16); $u=New-Object System.Net.Sockets.UdpClient; $u.EnableBroadcast=$true; $u.Connect("255.255.255.255",9); [void]$u.Send($p,$p.Length); $u.Close()
 ```
 
 ## Commande pour afficher un message sur l'écran
