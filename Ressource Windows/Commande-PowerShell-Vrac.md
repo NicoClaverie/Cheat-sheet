@@ -348,3 +348,12 @@ Get-PnpDevice -FriendlyName "Écran tactile HID" | Disable-PnpDevice -Confirm:$f
 ```powershell
 Get-PnpDevice -FriendlyName "Écran tactile HID" | Enable-PnpDevice -Confirm:$false
 ```
+
+---
+
+## Commande pour lancer Winget à partir d'une élévation System
+
+Penser à adapter l'ID en fonction du paquet désiré, exemple : `--id TheDocumentFoundation.LibreOffice` 
+```
+powershell -Command "$w=(Resolve-Path 'C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*_x64__8wekyb3d8bbwe\winget.exe' | Select-Object -ExpandProperty Path -Last 1); Start-Process $w -ArgumentList 'upgrade --id TheDocumentFoundation.LibreOffice --exact --silent --scope machine --accept-source-agreements --accept-package-agreements' -WindowStyle Hidden -Wait"
+```
