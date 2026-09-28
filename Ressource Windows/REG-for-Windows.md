@@ -36,3 +36,13 @@ Chemin : `HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services\Client`
 Nom de la valeur : `RedirectionWarningDialogVersion`  
 Données de la valeur : `1`  
 Type : `REG_DWORD`
+
+---
+
+## Active les privilèges administrateur à distance pour comptes locaux.
+
+A lancer via cmd en privilège `administrateur`
+
+```
+reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f
+```
