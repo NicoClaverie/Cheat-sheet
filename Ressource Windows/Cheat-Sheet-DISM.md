@@ -143,3 +143,110 @@ Dism /Unmount-Image /MountDir:"C:\mount" /Commit
 - Pour éviter les erreurs, désactiver l’antivirus le temps de la commande
 
 ---
+
+## ⚙️ Gestion des fonctionnalités Windows (Windows Features)
+
+DISM permet d'activer, désactiver, lister et obtenir des informations sur les fonctionnalités facultatives de Windows (Hyper-V, Sandbox, WSL, Services d'impression, etc.).
+
+> ⚠️ **Note :** Toutes ces commandes doivent être exécutées dans une invite de commandes ou PowerShell **en tant qu'administrateur**.
+
+---
+
+### 1. 📋 Lister les fonctionnalités
+
+* **Lister toutes les fonctionnalités disponibles et leur état :**
+  ```cmd
+  dism /Online /Get-Features
+  ```
+
+* **Filtrer pour afficher uniquement les fonctionnalités activées (PowerShell) :**
+  ```powershell
+  dism /Online /Get-Features | findstr /i "Enabled"
+  ```
+
+* **Filtrer pour afficher uniquement les fonctionnalités désactivées (PowerShell) :**
+  ```powershell
+  dism /Online /Get-Features | findstr /i "Disabled"
+  ```
+
+---
+
+### 2. 🔍 Obtenir des informations sur une fonctionnalité
+
+Pour connaître la description et le statut d'une fonctionnalité spécifique avant de l'activer ou de la désactiver :
+
+```cmd
+dism /Online /Get-FeatureInfo /FeatureName:NomDeLaFeature
+```
+*Exemple :*
+```cmd
+dism /Online /Get-FeatureInfo /FeatureName:Printing-PrintToPDFServices-Features
+```
+
+---
+
+### 3. ❌ Désactiver une fonctionnalité
+
+* **Désactiver une fonctionnalité spécifique :**
+  ```cmd
+  dism /Online /Disable-Feature /FeatureName:NomDeLaFeature
+  ```
+
+* **Exemples pratiques :**
+  * Désactiver l'impression en PDF :
+    ```cmd
+    dism /Online /Disable-Feature /FeatureName:Printing-PrintToPDFServices-Features
+    ```
+  * Désactiver Internet Explorer 11 (si présent) :
+    ```cmd
+    dism /Online /Disable-Feature /FeatureName:Internet-Explorer-Optional-amd64
+    ```
+  * Désactiver le protocole obsolète SMBv1 (Recommandé pour la sécurité) :
+    ```cmd
+    dism /Online /Disable-Feature /FeatureName:SMB1Protocol
+    ```
+
+---
+
+### 4. ✅ Activer une fonctionnalité
+
+* **Activer une fonctionnalité simple :**
+  ```cmd
+  dism /Online /Enable-Feature /FeatureName:NomDeLaFeature /All
+  ```
+  *(L'argument `/All` permet d'activer également toutes les dépendances requises par la fonctionnalité).*
+
+* **Exemples pratiques :**
+  * Activer le Bac à sable Windows (Windows Sandbox) :
+    ```cmd
+    dism /Online /Enable-Feature /FeatureName:Containers-DisposableClientVM /All
+    ```
+  * Activer Hyper-V :
+    ```cmd
+    dism /Online /Enable-Feature /FeatureName:Microsoft-Hyper-V-All /All
+    ```
+  * Activer la plateforme de machine virtuelle (nécessaire pour WSL2) :
+    ```cmd
+    dism /Online /Enable-Feature /FeatureName:VirtualMachinePlatform /All
+    ```
+  * Activer le sous-système Windows pour Linux (WSL1) :
+    ```cmd
+    dism /Online /Enable-Feature /FeatureName:Microsoft-Windows-Subsystem-Linux /All
+    ```
+
+---
+
+### 💡 Astuces Utiles
+
+1. **Éviter le redémarrage automatique :**
+   Si vous enchaînez plusieurs commandes et ne voulez pas que Windows demande de redémarrer à chaque fois, ajoutez l'argument `/NoRestart` à la fin :
+   ```cmd
+   dism /Online /Enable-Feature /FeatureName:VirtualMachinePlatform /All /NoRestart
+   ```
+
+2. **Utiliser une source d'installation distante ou locale :**
+   Si les fichiers d'une fonctionnalité sont manquants sur le système, vous pouvez pointer vers un fichier `install.wim` ou `ISO` Windows monté :
+   ```cmd
+   dism /Online /Enable-Feature /FeatureName:NetFx3 /All /Source:D:\sources\sxs /LimitAccess
+   ```
+   *(Exemple très courant pour installer .NET Framework 3.5 sans connexion Internet).*
