@@ -357,3 +357,27 @@ Penser à adapter l'ID en fonction du paquet désiré, exemple : `--id TheDocume
 ```
 powershell -Command "$w=(Resolve-Path 'C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*_x64__8wekyb3d8bbwe\winget.exe' | Select-Object -ExpandProperty Path -Last 1); Start-Process $w -ArgumentList 'upgrade --id TheDocumentFoundation.LibreOffice --exact --silent --scope machine --accept-source-agreements --accept-package-agreements' -WindowStyle Hidden -Wait"
 ```
+
+---
+
+## Script pour activer les webhooks 
+
+```
+# Remplace avec l'URL de ton webhook Google Chat
+$WebhookUrl = "https://chat.googleapis.com/v1/spaces/XXXXX/messages?key=YYYYY&token=ZZZZZ"
+
+$Date = Get-Date -Format 'dd/MM/yyyy à HH:mm'
+
+# Contenu du message (mise en forme Markdown compatible Google Chat)
+$Texte = @"
+*Déploiement terminé avec succès*
+• *Poste :* $env:COMPUTERNAME
+• *Date :* $Date
+"@
+
+$Payload = @{ text = $Texte } | ConvertTo-Json -Compress
+
+# Envoi via Invoke-RestMethod avec encodage UTF-8 explicite
+$Bytes = [System.Text.Encoding]::UTF8.GetBytes($Payload)
+Invoke-RestMethod -Uri $WebhookUrl -Method Post -Body $Bytes -ContentType 'application/json; charset=utf-8'
+```
